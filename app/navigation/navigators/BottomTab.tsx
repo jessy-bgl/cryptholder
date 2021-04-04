@@ -27,7 +27,7 @@ export default function BottomTabNavigator() {
         component={MainNavigator}
         options={{
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="bar-chart" color={color} />
+            <TabBarIcon name="stats-chart-outline" color={color} />
           ),
         }}
       />
