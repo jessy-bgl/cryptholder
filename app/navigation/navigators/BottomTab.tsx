@@ -5,6 +5,7 @@ import * as React from "react";
 import MainNavigator from "./Main";
 import FavoritesNavigator from "./Favorites";
 import PortfolioNavigator from "./Portfolio";
+import AlertsNavigator from "./Alerts";
 
 import { BottomTabParamList } from "../types";
 
@@ -41,6 +42,13 @@ export default function BottomTabNavigator() {
         component={PortfolioNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="briefcase-outline" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Alerts"
+        component={AlertsNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="notifications-outline" color={color} />,
         }}
       />
     </BottomTab.Navigator>
