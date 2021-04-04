@@ -1,13 +1,13 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import { SettingsTabParamList } from "../types";
 import SettingsScreen from "../../screens/Settings";
 
 const SettingsTabStack = createStackNavigator<SettingsTabParamList>();
 
 export default function SettingsNavigator() {
-  const {t} = useTranslation('common');
+  const { t } = useTranslation("common");
 
   return (
     <SettingsTabStack.Navigator>

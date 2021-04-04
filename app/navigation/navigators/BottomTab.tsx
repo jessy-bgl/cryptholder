@@ -1,7 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import * as React from "react";
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 import MainNavigator from "./Main";
 import FavoritesNavigator from "./Favorites";
@@ -21,7 +21,7 @@ function TabBarIcon(props: {
 }
 
 export default function BottomTabNavigator() {
-  const {t} = useTranslation('common');
+  const { t } = useTranslation("common");
 
   return (
     <BottomTab.Navigator initialRouteName="Main">
