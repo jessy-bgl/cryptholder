@@ -5,7 +5,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import useColorScheme from "./app/utils/useColorScheme";
 import Navigation from "./app/navigation";
 import LoadingScreenComponent from "./app/components/LoadingScreen";
-import { initializeI18n } from "./app/services/i18n/i18n";
+import { initializeI18n } from "./app/i18n/i18n";
 
 export default function App() {
   const colorScheme = useColorScheme();
