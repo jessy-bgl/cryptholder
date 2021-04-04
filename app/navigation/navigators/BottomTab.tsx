@@ -35,7 +35,7 @@ export default function BottomTabNavigator() {
         name="Favorites"
         component={FavoritesNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="star" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="star-outline" color={color} />,
         }}
       />
       <BottomTab.Screen
