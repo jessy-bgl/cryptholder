@@ -4,6 +4,9 @@ import * as React from "react";
 
 import MainNavigator from "./Main";
 import FavoritesNavigator from "./Favorites";
+import PortfolioNavigator from "./Portfolio";
+import AlertsNavigator from "./Alerts";
+import SettingsNavigator from "./Settings";
 
 import { BottomTabParamList } from "../types";
 
@@ -24,7 +27,7 @@ export default function BottomTabNavigator() {
         component={MainNavigator}
         options={{
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="bar-chart" color={color} />
+            <TabBarIcon name="stats-chart-outline" color={color} />
           ),
         }}
       />
@@ -32,7 +35,36 @@ export default function BottomTabNavigator() {
         name="Favorites"
         component={FavoritesNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="star" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="star-outline" color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Portfolio"
+        component={PortfolioNavigator}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="briefcase-outline" color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Alerts"
+        component={AlertsNavigator}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="notifications-outline" color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Settings"
+        component={SettingsNavigator}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="ellipsis-horizontal-outline" color={color} />
+          ),
         }}
       />
     </BottomTab.Navigator>
