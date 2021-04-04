@@ -1,10 +1,11 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
+import FavoritesComponent from "../components/Favorites"
 
 export default function Favorites() {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Details Screen</Text>
+      <FavoritesComponent />
     </View>
   );
 }
