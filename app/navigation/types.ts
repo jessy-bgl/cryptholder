@@ -4,6 +4,7 @@ export type RootStackParamList = {
   Favorites: undefined;
   Portfolio: undefined;
   Alerts: undefined;
+  Settings: undefined;
   NotFound: undefined;
 };
 
@@ -12,6 +13,7 @@ export type BottomTabParamList = {
   Favorites: undefined;
   Portfolio: undefined;
   Alerts: undefined;
+  Settings: undefined;
 };
 
 export type MainTabParamList = {
@@ -28,4 +30,8 @@ export type FavoritesTabParamList = {
 
 export type AlertsTabParamList = {
   Alerts: undefined;
+};
+
+export type SettingsTabParamList = {
+  Settings: undefined;
 };
