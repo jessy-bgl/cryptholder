@@ -1,6 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import * as React from "react";
+import {useTranslation} from 'react-i18next';
 
 import MainNavigator from "./Main";
 import FavoritesNavigator from "./Favorites";
@@ -20,10 +21,12 @@ function TabBarIcon(props: {
 }
 
 export default function BottomTabNavigator() {
+  const {t} = useTranslation('common');
+
   return (
     <BottomTab.Navigator initialRouteName="Main">
       <BottomTab.Screen
-        name="Main"
+        name={t("home")}
         component={MainNavigator}
         options={{
           tabBarIcon: ({ color }) => (
@@ -32,7 +35,7 @@ export default function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="Favorites"
+        name={t("favorites")}
         component={FavoritesNavigator}
         options={{
           tabBarIcon: ({ color }) => (
@@ -41,7 +44,7 @@ export default function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="Portfolio"
+        name={t("portfolio")}
         component={PortfolioNavigator}
         options={{
           tabBarIcon: ({ color }) => (
@@ -50,7 +53,7 @@ export default function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="Alerts"
+        name={t("alerts")}
         component={AlertsNavigator}
         options={{
           tabBarIcon: ({ color }) => (
@@ -59,7 +62,7 @@ export default function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="Settings"
+        name={t("settings")}
         component={SettingsNavigator}
         options={{
           tabBarIcon: ({ color }) => (
