@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "crypto_app",
-    "slug": "crypto_app",
+    "name": "cryptholder",
+    "slug": "cryptholder",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "crypto_app",
+    "scheme": "cryptholder",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
