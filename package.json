@@ -1,5 +1,14 @@
 {
   "main": "node_modules/expo/AppEntry.js",
+  "jest": {
+    "preset": "jest-expo",
+    "setupFiles": [
+      "<rootDir>/setupTests.ts"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)"
+    ]
+  },
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -8,12 +17,6 @@
     "eject": "expo eject",
     "test": "jest",
     "test:watch": "jest --watchAll"
-  },
-  "jest": {
-    "preset": "jest-expo",
-    "transformIgnorePatterns": [
-      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)"
-    ]
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.15.1",
