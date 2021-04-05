@@ -1,6 +1,7 @@
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
-import { config } from "../config/index";
+
+import { config } from "./config";
 import commonEn from "./common/en.json";
 import commonFr from "./common/fr.json";
 
