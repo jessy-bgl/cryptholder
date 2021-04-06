@@ -9,7 +9,7 @@ const BASE_URL: string = "https://api.coingecko.com/api/v3";
  * Manages coins requests.
  */
 export class CoinsService extends BaseHttpService {
-  async getCoinsMarkets(): Promise<Types.CoinMarketResult> {
+  async getCoinsMarkets(): Promise<Types.CoinMarketResult | undefined> {
     try {
       const response: AxiosResponse = await this.get(
         `${BASE_URL}/coins/markets`,
@@ -17,8 +17,7 @@ export class CoinsService extends BaseHttpService {
       );
       return response.data;
     } catch (e) {
-      __DEV__ && console.log(e.response.data);
-      throw e;
+      __DEV__ && console.log(e.response.data.error);
     }
   }
 }
