@@ -1,7 +1,6 @@
 import React from "react";
 import { Text } from "react-native";
 import { useTranslation } from "react-i18next";
-import { boolean } from "mobx-state-tree/dist/internal";
 
 type MainProps = {
   loadingData: boolean;
