@@ -5,27 +5,34 @@ import useColorScheme from "./app/utils/useColorScheme";
 import Navigation from "./app/navigation";
 import LoadingScreenComponent from "./app/components/LoadingScreen";
 import { initializeI18n } from "./app/i18n/i18n";
-import { Provider, rootStore } from "./app/models/root-store/root-store";
+import {
+  RootStoreProvider,
+  RootStoreInstance,
+  setupRootStore,
+} from "./app/models/root-store/root-store";
 
 export default function App() {
   const colorScheme = useColorScheme();
-  const [isBootstrapping, setIsBootstrapping] = useState(true);
+  const [rootStore, setRootStore] = useState<RootStoreInstance | undefined>(
+    undefined
+  );
 
   useEffect(() => {
     (async () => {
       await initializeI18n();
-      setIsBootstrapping(false);
+      setupRootStore().then(setRootStore);
     })();
   }, []);
-  if (isBootstrapping) {
+
+  if (!rootStore) {
     return <LoadingScreenComponent />;
   }
 
   return (
-    <Provider value={rootStore}>
+    <RootStoreProvider value={rootStore}>
       <SafeAreaProvider>
         <Navigation colorScheme={colorScheme} />
       </SafeAreaProvider>
-    </Provider>
+    </RootStoreProvider>
   );
 }
