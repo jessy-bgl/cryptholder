@@ -10,7 +10,7 @@ export const Coins = types
     },
   }))
   .actions((self) => ({
-    getMarketData: async () => {
+    reloadMarketData: async () => {
       const coingeckoService = new CoingeckoService();
       const result = await coingeckoService.getCoinsMarkets();
       if (result) self.saveMarketData(result);

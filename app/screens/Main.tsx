@@ -14,7 +14,7 @@ export const MainScreen = observer(function Main() {
   useEffect(() => {
     async function fetchCoinsMarketsData() {
       setLoadingMarketData(true);
-      await coins.getMarketData();
+      await coins.reloadMarketData();
       setLoadingMarketData(false);
     }
     fetchCoinsMarketsData();
