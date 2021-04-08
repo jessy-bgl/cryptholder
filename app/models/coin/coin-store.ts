@@ -1,5 +1,5 @@
 import { Instance, types, SnapshotOut } from "mobx-state-tree";
-import { CoinsService } from "../../services/coins.service";
+import { CoingeckoService } from "../../services/coingecko.service";
 import { Coin, ICoinSnapshot } from "./coin";
 
 export const Coins = types
@@ -11,8 +11,8 @@ export const Coins = types
   }))
   .actions((self) => ({
     getMarketData: async () => {
-      const coinService = new CoinsService();
-      const result = await coinService.getCoinsMarkets();
+      const coingeckoService = new CoingeckoService();
+      const result = await coingeckoService.getCoinsMarkets();
       if (result) self.saveMarketData(result);
     },
   }));

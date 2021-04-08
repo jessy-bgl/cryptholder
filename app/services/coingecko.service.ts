@@ -8,7 +8,7 @@ const BASE_URL: string = "https://api.coingecko.com/api/v3";
 /**
  * Manages coins requests.
  */
-export class CoinsService extends BaseHttpService {
+export class CoingeckoService extends BaseHttpService {
   async getCoinsMarkets(): Promise<Types.CoinMarketResult | undefined> {
     try {
       const response: AxiosResponse = await this.get(
