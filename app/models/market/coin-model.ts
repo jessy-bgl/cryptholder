@@ -1,6 +1,6 @@
 import { Instance, types, SnapshotOut } from "mobx-state-tree";
 
-export const Coin = types.model({
+export const CoinModel = types.model({
   id: types.string,
   symbol: types.maybeNull(types.string),
   name: types.maybeNull(types.string),
@@ -8,10 +8,7 @@ export const Coin = types.model({
   current_price: types.maybeNull(types.number),
   market_cap: types.maybeNull(types.number),
   market_cap_rank: types.maybeNull(types.integer),
-  fully_diluted_valuation: types.maybeNull(types.number),
   total_volume: types.maybeNull(types.number),
-  high_24h: types.maybeNull(types.number),
-  low_24h: types.maybeNull(types.number),
   price_change_24h: types.maybeNull(types.number),
   price_change_percentage_24h: types.maybeNull(types.number),
   market_cap_change_24h: types.maybeNull(types.number),
@@ -22,14 +19,11 @@ export const Coin = types.model({
   ath: types.maybeNull(types.number),
   ath_change_percentage: types.maybeNull(types.number),
   ath_date: types.maybeNull(types.string),
-  atl: types.maybeNull(types.number),
-  atl_change_percentage: types.maybeNull(types.number),
-  atl_date: types.maybeNull(types.string),
   last_updated: types.maybeNull(types.string),
 });
 
 // according to the official mobx-state-tree doc, using the following
 // interface is much more optimized for the typescript compiler
 // https://mobx-state-tree.js.org/tips/typescript#using-a-mst-type-at-design-time
-export interface ICoin extends Instance<typeof Coin> {}
-export interface ICoinSnapshot extends SnapshotOut<typeof Coin> {}
+export interface ICoin extends Instance<typeof CoinModel> {}
+export interface ICoinSnapshot extends SnapshotOut<typeof CoinModel> {}
