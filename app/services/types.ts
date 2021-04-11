@@ -1,3 +1,3 @@
-import { ICoin } from "../models/coin/coin";
+import { ICoin } from "../models/market/coin-model";
 
 export type CoinMarketResult = ICoin[];
