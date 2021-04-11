@@ -6,15 +6,14 @@ import { useStore } from "../models/root-store/root-store-context";
 import MainComponent from "../components/Main";
 
 export const MainScreen = observer(function Main() {
-  const { coins } = useStore();
-  const { marketData } = coins;
+  const { market } = useStore();
 
   const [loadingMarketData, setLoadingMarketData] = useState(false);
 
   useEffect(() => {
     async function fetchCoinsMarketsData() {
       setLoadingMarketData(true);
-      await coins.reloadMarketData();
+      await market.reloadCoinsMarketData();
       setLoadingMarketData(false);
     }
     fetchCoinsMarketsData();
