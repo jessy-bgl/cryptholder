@@ -1,8 +1,8 @@
-import { Coin } from "../coin";
+import { CoinModel } from "../coin-model";
 
 describe("Coin model", () => {
   test("can be created", () => {
-    const instance = Coin.create({
+    const instance = CoinModel.create({
       id: "bitcoin",
     });
     expect(instance).toBeTruthy();
