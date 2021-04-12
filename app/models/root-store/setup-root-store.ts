@@ -9,7 +9,7 @@ export const setupRootStore = async () => {
   let rootStore: RootStoreInstance;
 
   rootStore = RootStoreModel.create({
-    coins: {},
+    market: { coins: [] },
   });
 
   return rootStore;
