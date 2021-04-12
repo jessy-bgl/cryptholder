@@ -1,5 +1,4 @@
 import { Instance, types, SnapshotOut } from "mobx-state-tree";
-import { CoinsService } from "../../services/coins.service";
 
 export const Coin = types.model({
   id: types.string,
