@@ -1,8 +1,12 @@
 import React from "react";
-import { Text, Button } from "react-native";
+import { Text } from "react-native";
 import { useTranslation } from "react-i18next";
 
-export default function Main() {
+type MainProps = {
+  loadingData: boolean;
+};
+
+const Main = ({ loadingData }: MainProps) => {
   const { t } = useTranslation("common");
 
   return (
@@ -10,4 +14,6 @@ export default function Main() {
       <Text>{t("home")}</Text>
     </>
   );
-}
+};
+
+export default Main;
