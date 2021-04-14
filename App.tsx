@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
 
-import useColorScheme from "./app/utils/useColorScheme";
 import Navigation from "./app/navigation";
 import LoadingScreenComponent from "./app/components/LoadingScreen";
 import { initializeI18n } from "./app/i18n/i18n";
@@ -30,7 +29,6 @@ const theme = {
 };
 
 export default function App() {
-  const colorScheme = useColorScheme();
   const [rootStore, setRootStore] = useState<RootStoreInstance | undefined>(
     undefined
   );
@@ -50,7 +48,7 @@ export default function App() {
     <RootStoreProvider value={rootStore}>
       <SafeAreaProvider>
         <PaperProvider theme={theme}>
-          <Navigation colorScheme={colorScheme} />
+          <Navigation />
         </PaperProvider>
       </SafeAreaProvider>
     </RootStoreProvider>
