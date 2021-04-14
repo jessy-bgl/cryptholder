@@ -1,75 +1,65 @@
-import { Ionicons } from "@expo/vector-icons";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import * as React from "react";
+import { Ionicons } from "@expo/vector-icons";
+import { BottomNavigation, Text } from "react-native-paper";
 import { useTranslation } from "react-i18next";
 
-import MainNavigator from "./Main";
-import FavoritesNavigator from "./Favorites";
-import PortfolioNavigator from "./Portfolio";
-import AlertsNavigator from "./Alerts";
-import SettingsNavigator from "./Settings";
+import MainView from "../../screens/Main";
+import FavoritesView from "../../screens/Favorites";
+import PortfolioView from "../../screens/Portfolio";
+import AlertsView from "../../screens/Alerts";
+import SettingsView from "../../screens/Settings";
 
-import { BottomTabParamList } from "../types";
+const MainRoute = () => <MainView />;
+const FavoritesRoute = () => <FavoritesView />;
+const PortfolioRoute = () => <PortfolioView />;
+const AlertsRoute = () => <AlertsView />;
+const SettingsRoute = () => <SettingsView />;
 
-const BottomTab = createBottomTabNavigator<BottomTabParamList>();
-
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof Ionicons>["name"];
-  color: string;
-}) {
-  return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
-}
-
-export default function BottomTabNavigator() {
+const BottomTabView = () => {
+  const [index, setIndex] = React.useState(0);
   const { t } = useTranslation("common");
+  const [routes] = React.useState([
+    { key: "main", title: t("home"), icon: "stats-chart" },
+    { key: "favorites", title: t("favorites"), icon: "star" },
+    {
+      key: "portfolio",
+      title: t("portfolio"),
+      icon: "briefcase",
+    },
+    {
+      key: "alerts",
+      title: t("alerts"),
+      icon: "notifications",
+    },
+    {
+      key: "settings",
+      title: t("settings"),
+      icon: "ellipsis-horizontal",
+    },
+  ]);
+
+  const renderIcon = (props: {
+    route: any;
+    focused: boolean;
+    color: string;
+  }) => <Ionicons size={22} name={props.route.icon} color={props.color} />;
+
+  const renderScene = BottomNavigation.SceneMap({
+    main: MainRoute,
+    favorites: FavoritesRoute,
+    portfolio: PortfolioRoute,
+    alerts: AlertsRoute,
+    settings: SettingsRoute,
+  });
 
   return (
-    <BottomTab.Navigator initialRouteName="Main">
-      <BottomTab.Screen
-        name={t("home")}
-        component={MainNavigator}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="stats-chart-outline" color={color} />
-          ),
-        }}
-      />
-      <BottomTab.Screen
-        name={t("favorites")}
-        component={FavoritesNavigator}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="star-outline" color={color} />
-          ),
-        }}
-      />
-      <BottomTab.Screen
-        name={t("portfolio")}
-        component={PortfolioNavigator}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="briefcase-outline" color={color} />
-          ),
-        }}
-      />
-      <BottomTab.Screen
-        name={t("alerts")}
-        component={AlertsNavigator}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="notifications-outline" color={color} />
-          ),
-        }}
-      />
-      <BottomTab.Screen
-        name={t("settings")}
-        component={SettingsNavigator}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ellipsis-horizontal-outline" color={color} />
-          ),
-        }}
-      />
-    </BottomTab.Navigator>
+    <BottomNavigation
+      navigationState={{ index, routes }}
+      onIndexChange={setIndex}
+      renderScene={renderScene}
+      renderIcon={renderIcon}
+    />
   );
-}
+};
+
+export default BottomTabView;
