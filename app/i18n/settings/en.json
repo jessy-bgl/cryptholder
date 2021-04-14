@@ -1,2 +1,9 @@
 {
+  "language": "Language",
+  "theme": "Dark Mode",
+  "mainCurrency": "Primary Currency",
+  "portfolioOptions": "Portfolio Settings",
+  "homeScreen": "Default Home Screen",
+  "security": "Security Settings",
+  "about": "About CryptHolder"
 }
