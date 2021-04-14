@@ -19,25 +19,22 @@ const BottomTabView = () => {
   const [index, setIndex] = React.useState(0);
   const { t } = useTranslation("common");
   const [routes] = React.useState([
-    { key: "main", title: t("home"), icon: "stats-chart", color: "#222222" },
-    { key: "favorites", title: t("favorites"), icon: "star", color: "#222222" },
+    { key: "main", title: t("home"), icon: "stats-chart" },
+    { key: "favorites", title: t("favorites"), icon: "star" },
     {
       key: "portfolio",
       title: t("portfolio"),
       icon: "briefcase",
-      color: "#222222",
     },
     {
       key: "alerts",
       title: t("alerts"),
       icon: "notifications",
-      color: "#222222",
     },
     {
       key: "settings",
       title: t("settings"),
       icon: "ellipsis-horizontal",
-      color: "#222222",
     },
   ]);
 
