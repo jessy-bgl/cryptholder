@@ -1,5 +1,5 @@
 import { types, Instance } from "mobx-state-tree";
-import { MarketModel } from "../market/store";
+import { MarketModel } from "../market/market-model";
 
 /**
  * The RootStore model.
