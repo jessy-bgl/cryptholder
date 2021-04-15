@@ -4,6 +4,7 @@ import { List, Switch, Text } from "react-native-paper";
 import { useTranslation } from "react-i18next";
 import { Ionicons } from "@expo/vector-icons";
 import ListItemDivider from "./List/ListItemDivider";
+import { useStore } from "../models/root-store/root-store-context";
 
 type ItemIconProps = {
   name: React.ComponentProps<typeof Ionicons>["name"];
@@ -15,6 +16,7 @@ const ItemIcon = ({ name }: ItemIconProps) => (
 
 export default function Settings() {
   const { t } = useTranslation("settings");
+  const { settings } = useStore();
 
   return (
     <List.Section style={styles.root}>
@@ -26,7 +28,12 @@ export default function Settings() {
       <ListItemDivider
         title={t("theme")}
         left={() => <ItemIcon name={"contrast-outline"} />}
-        right={() => <Switch />}
+        right={() => (
+          <Switch
+            value={settings.darkMode}
+            onValueChange={(value: boolean) => settings.toggleDarkMode(value)}
+          />
+        )}
       />
       <ListItemDivider
         title={t("mainCurrency")}

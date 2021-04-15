@@ -10,6 +10,7 @@ export const setupRootStore = async () => {
 
   rootStore = RootStoreModel.create({
     market: { coins: [] },
+    settings: { darkMode: false },
   });
 
   return rootStore;
