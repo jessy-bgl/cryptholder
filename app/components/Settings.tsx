@@ -6,7 +6,7 @@ import ListItemDivider from "./List/ListItemDivider";
 import { useStore } from "../models/root-store/root-store-context";
 import ItemIonicon from "../components/Icon/ItemIonicon";
 
-export default function Settings() {
+const Settings = () => {
   const { t } = useTranslation("settings");
   const { settings } = useStore();
 
@@ -54,7 +54,9 @@ export default function Settings() {
       />
     </List.Section>
   );
-}
+};
+
+export default Settings;
 
 const styles = StyleSheet.create({
   root: {
