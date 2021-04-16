@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet } from "react-native";
-import { List, Switch, Text } from "react-native-paper";
+import { List, Switch, Text, useTheme } from "react-native-paper";
 import { useTranslation } from "react-i18next";
 import ListItemDivider from "./List/ListItemDivider";
 import { useStore } from "../models/root-store/root-store-context";
@@ -9,13 +9,17 @@ import ItemIonicon from "../components/Icon/ItemIonicon";
 const Settings = () => {
   const { t } = useTranslation("settings");
   const { settings } = useStore();
+  const { colors } = useTheme();
+  const { secondary } = colors;
 
   return (
     <List.Section style={styles.root}>
       <ListItemDivider
         title={t("language")}
         left={() => <ItemIonicon name={"globe-outline"} />}
-        right={() => <Text style={styles.text}>FR</Text>}
+        right={() => (
+          <Text style={{ color: secondary, ...styles.text }}>FR</Text>
+        )}
       />
       <ListItemDivider
         title={t("theme")}
@@ -30,7 +34,9 @@ const Settings = () => {
       <ListItemDivider
         title={t("mainCurrency")}
         left={() => <ItemIonicon name={"cash-outline"} />}
-        right={() => <Text style={styles.text}>USD</Text>}
+        right={() => (
+          <Text style={{ color: secondary, ...styles.text }}>USD</Text>
+        )}
       />
       <ListItemDivider
         title={t("portfolioOptions")}
@@ -40,7 +46,9 @@ const Settings = () => {
       <ListItemDivider
         title={t("homeScreen")}
         left={() => <ItemIonicon name={"albums-outline"} />}
-        right={() => <Text style={styles.text}>Accueil</Text>}
+        right={() => (
+          <Text style={{ color: secondary, ...styles.text }}>Accueil</Text>
+        )}
       />
       <ListItemDivider
         title={t("security")}
@@ -69,6 +77,5 @@ const styles = StyleSheet.create({
   text: {
     textAlignVertical: "center",
     fontSize: 18,
-    color: "#888",
   },
 });
