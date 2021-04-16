@@ -7,19 +7,22 @@ import commonFr from "./common/fr.json";
 import settingsEn from "./settings/en.json";
 import settingsFr from "./settings/fr.json";
 
-export const initializeI18n = async (): Promise<void> => {
-  await i18next.use(initReactI18next).init({
-    lng: config.defaultLang,
-    debug: __DEV__,
-    resources: {
-      en: {
-        common: commonEn,
-        settings: settingsEn,
-      },
-      fr: {
-        common: commonFr,
-        settings: settingsFr,
-      },
+i18next.use(initReactI18next).init({
+  fallbackLng: config.defaultLang,
+  debug: __DEV__,
+  interpolation: {
+    escapeValue: false, // react already safes from xss
+  },
+  resources: {
+    en: {
+      common: commonEn,
+      settings: settingsEn,
     },
-  });
-};
+    fr: {
+      common: commonFr,
+      settings: settingsFr,
+    },
+  },
+});
+
+export default i18next;
