@@ -26,7 +26,7 @@ const darkTheme = {
   },
 };
 
-export const Navigation = observer(function Nav() {
+export const Navigation = () => {
   const { settings } = useStore();
 
   return (
@@ -34,6 +34,6 @@ export const Navigation = observer(function Nav() {
       <BottomTabNavigator />
     </PaperProvider>
   );
-});
+};
 
-export default Navigation;
+export default observer(Navigation);
