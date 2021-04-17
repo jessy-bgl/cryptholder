@@ -6,6 +6,8 @@ import commonEn from "./common/en.json";
 import commonFr from "./common/fr.json";
 import settingsEn from "./settings/en.json";
 import settingsFr from "./settings/fr.json";
+import marketEn from "./market/en.json";
+import marketFr from "./market/fr.json";
 
 i18next.use(initReactI18next).init({
   fallbackLng: config.defaultLang,
@@ -17,10 +19,12 @@ i18next.use(initReactI18next).init({
     en: {
       common: commonEn,
       settings: settingsEn,
+      market: marketEn,
     },
     fr: {
       common: commonFr,
       settings: settingsFr,
+      market: marketFr,
     },
   },
 });

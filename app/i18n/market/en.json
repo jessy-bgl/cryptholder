@@ -1,0 +1,6 @@
+{
+  "name": "Name",
+  "price": "Price",
+  "price_24h": "Price/24h",
+  "cap_24h": "Cap/24h"
+}

@@ -9,7 +9,7 @@ const API_BASE_PATH: string = "api/v3";
 const API_COINSMARKET_PATH: string = "coins/markets";
 const API_PARAMS: object = {
   vs_currency: "usd",
-  per_page: 250,
+  per_page: 20,
   price_change_percentage: "1h,24h,7d",
 };
 

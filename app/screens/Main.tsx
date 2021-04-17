@@ -1,29 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { View } from "react-native";
-import { observer } from "mobx-react-lite";
+import React from "react";
+import { StyleSheet, View, StatusBar } from "react-native";
 
-import { useStore } from "../models/root-store/root-store-context";
 import MainComponent from "../components/Main";
 
-export const MainScreen = observer(function Main() {
-  const { market } = useStore();
-
-  const [loadingMarketData, setLoadingMarketData] = useState(false);
-
-  useEffect(() => {
-    async function fetchCoinsMarketsData() {
-      setLoadingMarketData(true);
-      await market.reloadCoinsMarketData();
-      setLoadingMarketData(false);
-    }
-    fetchCoinsMarketsData();
-  }, []);
-
+export const MainScreen = function Main() {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <MainComponent loadingData={loadingMarketData} />
+    <View style={styles.root}>
+      <MainComponent />
     </View>
   );
+};
+
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    paddingTop: StatusBar.currentHeight,
+  },
 });
 
 export default MainScreen;
