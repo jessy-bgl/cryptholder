@@ -9,13 +9,20 @@ import { observer } from "mobx-react-lite";
 import BottomTabNavigator from "./navigators/BottomTab";
 import { useStore } from "../models/root-store/root-store-context";
 
+declare global {
+  namespace ReactNativePaper {
+    interface ThemeColors {
+      secondary: string;
+    }
+  }
+}
+
 const lightTheme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
     primary: "#344966",
-    background: "#F0F4EF",
-    text: "#0D1821",
+    secondary: "#777777",
   },
 };
 
@@ -23,10 +30,11 @@ const darkTheme = {
   ...DarkTheme,
   colors: {
     ...DarkTheme.colors,
+    secondary: "#777777",
   },
 };
 
-export const Navigation = observer(function Nav() {
+export const Navigation = () => {
   const { settings } = useStore();
 
   return (
@@ -34,6 +42,6 @@ export const Navigation = observer(function Nav() {
       <BottomTabNavigator />
     </PaperProvider>
   );
-});
+};
 
-export default Navigation;
+export default observer(Navigation);
