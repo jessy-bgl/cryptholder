@@ -1,12 +1,29 @@
 import React from "react";
 import { List, Searchbar } from "react-native-paper";
+import ItemIonicon from "../Icon/ItemIonicon";
 
 export type SearchViewItemProps = {
-  id: number;
+  id: number | string;
   title: string;
+  isSelected?: boolean;
 };
 
-const SearchView = (props: { array: SearchViewItemProps[] }) => {
+export type SearchViewProps = {
+  array: SearchViewItemProps[];
+  defaultKey?: string | number;
+};
+
+const SearchViewItem = ({ id, title, isSelected }: SearchViewItemProps) => {
+  return (
+    <List.Item
+      key={id}
+      title={title}
+      right={() => (isSelected ? <ItemIonicon name="checkmark" /> : <></>)}
+    />
+  );
+};
+
+const SearchView = ({ array, defaultKey }: SearchViewProps) => {
   const [searchQuery, setSearchQuery] = React.useState("");
   const onChangeSearch = (query: string) => setSearchQuery(query);
 
@@ -18,9 +35,13 @@ const SearchView = (props: { array: SearchViewItemProps[] }) => {
         value={searchQuery}
       />
       <List.Section>
-        {props.array.map((props: SearchViewItemProps) =>
-          props.title.toLowerCase().includes(searchQuery.toLowerCase()) ? (
-            <List.Item key={props.id} {...props} />
+        {array.map(({ id, title }: SearchViewItemProps) =>
+          title.toLowerCase().includes(searchQuery.toLowerCase()) ? (
+            <SearchViewItem
+              id={id}
+              title={title}
+              isSelected={defaultKey == id}
+            />
           ) : (
             <></>
           )

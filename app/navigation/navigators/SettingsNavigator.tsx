@@ -7,11 +7,13 @@ import SearchView, {
   SearchViewItemProps,
 } from "../../components/View/SearchView";
 import { config } from "../../i18n/config";
+import { useStore } from "../../models/root-store/root-store-context";
 
 const SettingsViewLanguage = () => {
   const { languages } = config;
 
-  return <SearchView array={languages} />;
+  const { settings } = useStore();
+  return <SearchView array={languages} defaultKey={settings.defaultLang} />;
 };
 
 const SettingsViewMainCurrency = () => {
