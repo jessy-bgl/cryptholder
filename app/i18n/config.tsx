@@ -3,5 +3,5 @@ export const config = {
     { id: "en", title: "English" },
     { id: "fr", title: "Français" },
   ],
-  defaultLang: "fr",
+  defaultLang: "en",
 };

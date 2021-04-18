@@ -29,4 +29,8 @@ i18next.use(initReactI18next).init({
   },
 });
 
+export const changeLaguage = (languageKey: string) => {
+  i18next.changeLanguage(languageKey); // -> returns a Promise
+};
+
 export default i18next;

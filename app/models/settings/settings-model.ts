@@ -1,3 +1,4 @@
+import i18next from "i18next";
 import { Instance, types, SnapshotOut } from "mobx-state-tree";
 
 export const SettingsModel = types
@@ -13,6 +14,7 @@ export const SettingsModel = types
   .actions((self) => ({
     setDefaultLang: (value: string) => {
       self.defaultLang = value;
+      i18next.changeLanguage(value);
     },
   }));
 
