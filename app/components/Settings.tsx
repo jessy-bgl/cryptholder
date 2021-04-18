@@ -40,6 +40,7 @@ const Settings = () => {
         right={() => (
           <Text style={{ color: secondary, ...styles.text }}>USD</Text>
         )}
+        onPress={() => navigate("mainCurrency")}
       />
       <ListItemDivider
         title={t("portfolioOptions")}
