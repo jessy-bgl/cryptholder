@@ -2,6 +2,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useTranslation } from "react-i18next";
 import { observer } from "mobx-react-lite";
+import { useNavigation } from "@react-navigation/native";
 
 import Settings from "../../components/Settings";
 import SearchView, {
@@ -12,13 +13,19 @@ import { useStore } from "../../models/root-store/root-store-context";
 
 const SettingsViewLanguage = () => {
   const { languages } = config;
-
+  const { navigate } = useNavigation();
   const { settings } = useStore();
+
+  const onPressSearchViewItem = (value: string) => {
+    settings.setDefaultLang(value);
+    navigate("settings");
+  };
+
   return (
     <SearchView
       array={languages}
       defaultKey={settings.defaultLang}
-      onPress={settings.setDefaultLang}
+      onPress={onPressSearchViewItem}
     />
   );
 };
