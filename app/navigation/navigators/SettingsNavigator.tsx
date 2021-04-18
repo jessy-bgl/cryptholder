@@ -5,7 +5,7 @@ import { observer } from "mobx-react-lite";
 
 import Settings from "../../components/Settings";
 import SearchView, {
-  SearchViewItemProps,
+  SearchViewArrayProps,
 } from "../../components/View/SearchView";
 import { config } from "../../i18n/config";
 import { useStore } from "../../models/root-store/root-store-context";
@@ -26,13 +26,13 @@ const SettingsViewLanguage = () => {
 const SettingsViewLanguageObserver = observer(SettingsViewLanguage);
 
 const SettingsViewMainCurrency = () => {
-  const props: SearchViewItemProps[] = [
+  const props: SearchViewArrayProps[] = [
     {
-      id: 1,
+      id: "1",
       title: "USD",
     },
     {
-      id: 2,
+      id: "2",
       title: "EUR",
     },
   ];
@@ -41,17 +41,17 @@ const SettingsViewMainCurrency = () => {
 };
 
 const SettingsViewHomeScreen = () => {
-  const props: SearchViewItemProps[] = [
+  const props: SearchViewArrayProps[] = [
     {
-      id: 1,
+      id: "1",
       title: "Main",
     },
     {
-      id: 2,
+      id: "2",
       title: "Favorites",
     },
     {
-      id: 3,
+      id: "3",
       title: "Portfolio",
     },
   ];

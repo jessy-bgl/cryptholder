@@ -2,17 +2,22 @@ import React from "react";
 import { List, Searchbar } from "react-native-paper";
 import ItemIonicon from "../Icon/ItemIonicon";
 
-export type SearchViewItemProps = {
-  id: number | string;
+export type SearchViewArrayProps = {
+  id: string;
   title: string;
-  isSelected?: boolean;
-  onPress?: (value: string) => void;
+};
+
+type SearchViewItemProps = {
+  id: string;
+  title: string;
+  isSelected: boolean;
+  onPress: (value: string) => void;
 };
 
 export type SearchViewProps = {
-  array: SearchViewItemProps[];
-  defaultKey?: string | number;
-  onPress?: (value: string) => void;
+  array: SearchViewArrayProps[];
+  defaultKey?: string;
+  onPress: (value: string) => void;
 };
 
 const SearchViewItem = ({
@@ -26,7 +31,7 @@ const SearchViewItem = ({
       key={id}
       title={title}
       right={() => (isSelected ? <ItemIonicon name="checkmark" /> : <></>)}
-      onPress={() => onPress(id.toString())}
+      onPress={() => onPress(id)}
     />
   );
 };
@@ -43,7 +48,7 @@ const SearchView = ({ array, defaultKey, onPress }: SearchViewProps) => {
         value={searchQuery}
       />
       <List.Section>
-        {array.map(({ id, title }: SearchViewItemProps) =>
+        {array.map(({ id, title }: SearchViewArrayProps) =>
           title.toLowerCase().includes(searchQuery.toLowerCase()) ? (
             <SearchViewItem
               id={id}
