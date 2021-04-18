@@ -1,7 +1,7 @@
 export const config = {
   languages: [
-    { id: "en", name: "English" },
-    { id: "fr", name: "Français" },
+    { id: "en", title: "English" },
+    { id: "fr", title: "Français" },
   ],
   defaultLang: "fr",
 };

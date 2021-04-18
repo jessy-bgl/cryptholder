@@ -6,20 +6,12 @@ import Settings from "../../components/Settings";
 import SearchView, {
   SearchViewItemProps,
 } from "../../components/View/SearchView";
+import { config } from "../../i18n/config";
 
 const SettingsViewLanguage = () => {
-  const props: SearchViewItemProps[] = [
-    {
-      id: 1,
-      title: "English",
-    },
-    {
-      id: 2,
-      title: "French",
-    },
-  ];
+  const { languages } = config;
 
-  return <SearchView array={props} />;
+  return <SearchView array={languages} />;
 };
 
 const SettingsViewMainCurrency = () => {
