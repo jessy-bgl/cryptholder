@@ -53,6 +53,7 @@ const Settings = () => {
         right={() => (
           <Text style={{ color: secondary, ...styles.text }}>Accueil</Text>
         )}
+        onPress={() => navigate("homeScreen")}
       />
       <ListItemDivider
         title={t("security")}
