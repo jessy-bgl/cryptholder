@@ -1,5 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
+import { useTranslation } from "react-i18next";
 
 import Settings from "../../components/Settings";
 import SearchView, {
@@ -65,12 +66,37 @@ export type SettingsStackParamList = {
 const Stack = createStackNavigator<SettingsStackParamList>();
 
 const SettingsNavigator = () => {
+  const { t } = useTranslation("settings");
   return (
     <Stack.Navigator initialRouteName="settings">
-      <Stack.Screen name="settings" component={Settings} />
-      <Stack.Screen name="language" component={SettingsViewLanguage} />
-      <Stack.Screen name="mainCurrency" component={SettingsViewMainCurrency} />
-      <Stack.Screen name="homeScreen" component={SettingsViewHomeScreen} />
+      <Stack.Screen
+        name="settings"
+        component={Settings}
+        options={{
+          title: t("settings"),
+        }}
+      />
+      <Stack.Screen
+        name="language"
+        component={SettingsViewLanguage}
+        options={{
+          title: t("language"),
+        }}
+      />
+      <Stack.Screen
+        name="mainCurrency"
+        component={SettingsViewMainCurrency}
+        options={{
+          title: t("mainCurrency"),
+        }}
+      />
+      <Stack.Screen
+        name="homeScreen"
+        component={SettingsViewHomeScreen}
+        options={{
+          title: t("homeScreen"),
+        }}
+      />
     </Stack.Navigator>
   );
 };
