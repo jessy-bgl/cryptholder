@@ -6,24 +6,32 @@ export type SearchViewItemProps = {
   id: number | string;
   title: string;
   isSelected?: boolean;
+  onPress?: (value: string) => void;
 };
 
 export type SearchViewProps = {
   array: SearchViewItemProps[];
   defaultKey?: string | number;
+  onPress?: (value: string) => void;
 };
 
-const SearchViewItem = ({ id, title, isSelected }: SearchViewItemProps) => {
+const SearchViewItem = ({
+  id,
+  title,
+  isSelected,
+  onPress,
+}: SearchViewItemProps) => {
   return (
     <List.Item
       key={id}
       title={title}
       right={() => (isSelected ? <ItemIonicon name="checkmark" /> : <></>)}
+      onPress={() => onPress(id.toString())}
     />
   );
 };
 
-const SearchView = ({ array, defaultKey }: SearchViewProps) => {
+const SearchView = ({ array, defaultKey, onPress }: SearchViewProps) => {
   const [searchQuery, setSearchQuery] = React.useState("");
   const onChangeSearch = (query: string) => setSearchQuery(query);
 
@@ -41,6 +49,7 @@ const SearchView = ({ array, defaultKey }: SearchViewProps) => {
               id={id}
               title={title}
               isSelected={defaultKey == id}
+              onPress={onPress}
             />
           ) : (
             <></>

@@ -1,6 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useTranslation } from "react-i18next";
+import { observer } from "mobx-react-lite";
 
 import Settings from "../../components/Settings";
 import SearchView, {
@@ -13,8 +14,16 @@ const SettingsViewLanguage = () => {
   const { languages } = config;
 
   const { settings } = useStore();
-  return <SearchView array={languages} defaultKey={settings.defaultLang} />;
+  return (
+    <SearchView
+      array={languages}
+      defaultKey={settings.defaultLang}
+      onPress={settings.setDefaultLang}
+    />
+  );
 };
+
+const SettingsViewLanguageObserver = observer(SettingsViewLanguage);
 
 const SettingsViewMainCurrency = () => {
   const props: SearchViewItemProps[] = [
@@ -72,7 +81,7 @@ const SettingsNavigator = () => {
       />
       <Stack.Screen
         name="language"
-        component={SettingsViewLanguage}
+        component={SettingsViewLanguageObserver}
         options={{
           title: t("language"),
         }}
