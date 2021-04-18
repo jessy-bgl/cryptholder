@@ -5,12 +5,14 @@ import { useTranslation } from "react-i18next";
 import ListItemDivider from "./List/ListItemDivider";
 import { useStore } from "../models/root-store/root-store-context";
 import ItemIonicon from "../components/Icon/ItemIonicon";
+import { useNavigation } from "@react-navigation/core";
 
 const Settings = () => {
   const { t } = useTranslation("settings");
   const { settings } = useStore();
   const { colors } = useTheme();
   const { secondary } = colors;
+  const { navigate } = useNavigation();
 
   return (
     <List.Section style={styles.root}>
@@ -20,6 +22,7 @@ const Settings = () => {
         right={() => (
           <Text style={{ color: secondary, ...styles.text }}>FR</Text>
         )}
+        onPress={() => navigate("language")}
       />
       <ListItemDivider
         title={t("theme")}
