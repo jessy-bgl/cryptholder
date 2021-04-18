@@ -3,10 +3,16 @@ import { Instance, types, SnapshotOut } from "mobx-state-tree";
 export const SettingsModel = types
   .model({
     darkMode: types.optional(types.boolean, true),
+    defaultLang: types.optional(types.string, "en"),
   })
   .actions((self) => ({
     toggleDarkMode: (value: boolean) => {
       self.darkMode = !self.darkMode;
+    },
+  }))
+  .actions((self) => ({
+    setDefaultLang: (value: string) => {
+      self.defaultLang = value;
     },
   }));
 
