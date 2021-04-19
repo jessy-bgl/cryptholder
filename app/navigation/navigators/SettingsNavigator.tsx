@@ -54,22 +54,22 @@ const SettingsViewMainCurrency = () => {
 const SettingsViewMainCurrencyObserver = observer(SettingsViewMainCurrency);
 
 const SettingsViewHomeScreen = () => {
-  const props: SearchViewArrayProps[] = [
-    {
-      id: "1",
-      title: "Main",
-    },
-    {
-      id: "2",
-      title: "Favorites",
-    },
-    {
-      id: "3",
-      title: "Portfolio",
-    },
-  ];
+  const { mainScreen } = config;
+  const { navigate } = useNavigation();
+  const { settings } = useStore();
 
-  return <SearchView array={props} />;
+  const onPressMainScreenViewItem = (value: string) => {
+    settings.setDefaultMainScreen(value);
+    navigate("settings");
+  };
+
+  return (
+    <SearchView
+      array={mainScreen.screen}
+      defaultKey={settings.mainScreen}
+      onPress={onPressMainScreenViewItem}
+    />
+  );
 };
 
 export type SettingsStackParamList = {

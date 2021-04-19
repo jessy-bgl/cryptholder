@@ -7,6 +7,7 @@ export const SettingsModel = types
     darkMode: types.optional(types.boolean, true),
     language: types.optional(types.string, config.i18n.default),
     mainCurrency: types.optional(types.string, config.mainCurrency.default),
+    mainScreen: types.optional(types.string, config.mainScreen.default),
   })
   .actions((self) => ({
     toggleDarkMode: (value: boolean) => {
@@ -22,6 +23,11 @@ export const SettingsModel = types
   .actions((self) => ({
     setDefaultMainCurrency: (value: string) => {
       self.mainCurrency = value;
+    },
+  }))
+  .actions((self) => ({
+    setDefaultMainScreen: (value: string) => {
+      self.mainScreen = value;
     },
   }));
 

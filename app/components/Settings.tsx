@@ -7,11 +7,12 @@ import ListItemDivider from "./List/ListItemDivider";
 import { useStore } from "../models/root-store/root-store-context";
 import ItemIonicon from "../components/Icon/ItemIonicon";
 import { useNavigation } from "@react-navigation/core";
+import { capitalizeFistLetter } from "../utils/strings";
 
 const Settings = () => {
   const { t } = useTranslation("settings");
   const { settings } = useStore();
-  const { language, mainCurrency } = settings;
+  const { language, mainCurrency, mainScreen } = settings;
   const { colors } = useTheme();
   const { secondary } = colors;
   const { navigate } = useNavigation();
@@ -57,7 +58,9 @@ const Settings = () => {
         title={t("homeScreen")}
         left={() => <ItemIonicon name={"albums-outline"} />}
         right={() => (
-          <Text style={{ color: secondary, ...styles.text }}>Accueil</Text>
+          <Text style={{ color: secondary, ...styles.text }}>
+            {capitalizeFistLetter(mainScreen)}
+          </Text>
         )}
         onPress={() => navigate("homeScreen")}
       />
