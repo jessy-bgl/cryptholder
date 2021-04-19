@@ -1,10 +1,11 @@
 import i18next from "i18next";
 import { Instance, types, SnapshotOut } from "mobx-state-tree";
+import { config } from "../../config/config";
 
 export const SettingsModel = types
   .model({
     darkMode: types.optional(types.boolean, true),
-    defaultLang: types.optional(types.string, "en"),
+    defaultLang: types.optional(types.string, config.i18n.default),
   })
   .actions((self) => ({
     toggleDarkMode: (value: boolean) => {
