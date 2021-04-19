@@ -33,19 +33,23 @@ const SettingsViewLanguage = () => {
 const SettingsViewLanguageObserver = observer(SettingsViewLanguage);
 
 const SettingsViewMainCurrency = () => {
-  const props: SearchViewArrayProps[] = [
-    {
-      id: "1",
-      title: "USD",
-    },
-    {
-      id: "2",
-      title: "EUR",
-    },
-  ];
+  const { mainCurrency } = config;
+  const { navigate } = useNavigation();
 
-  return <SearchView array={props} />;
+  const onPressMainCurrencyViewItem = (value: string) => {
+    navigate("settings");
+  };
+
+  return (
+    <SearchView
+      array={mainCurrency.currency}
+      defaultKey={settings.mainCurrency}
+      onPress={onPressMainCurrencyViewItem}
+    />
+  );
 };
+
+const SettingsViewMainCurrencyObserver = observer(SettingsViewMainCurrency);
 
 const SettingsViewHomeScreen = () => {
   const props: SearchViewArrayProps[] = [
@@ -95,7 +99,7 @@ const SettingsNavigator = () => {
       />
       <Stack.Screen
         name="mainCurrency"
-        component={SettingsViewMainCurrency}
+        component={SettingsViewMainCurrencyObserver}
         options={{
           title: t("mainCurrency"),
         }}
