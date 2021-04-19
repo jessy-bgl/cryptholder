@@ -6,6 +6,7 @@ export const SettingsModel = types
   .model({
     darkMode: types.optional(types.boolean, true),
     language: types.optional(types.string, config.i18n.default),
+    mainCurrency: types.optional(types.string, config.mainCurrency.default),
   })
   .actions((self) => ({
     toggleDarkMode: (value: boolean) => {
@@ -16,6 +17,11 @@ export const SettingsModel = types
     setDefaultLang: (value: string) => {
       self.language = value;
       i18next.changeLanguage(value);
+    },
+  }))
+  .actions((self) => ({
+    setDefaultMainCurrency: (value: string) => {
+      self.mainCurrency = value;
     },
   }));
 

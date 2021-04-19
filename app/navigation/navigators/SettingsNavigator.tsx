@@ -35,8 +35,10 @@ const SettingsViewLanguageObserver = observer(SettingsViewLanguage);
 const SettingsViewMainCurrency = () => {
   const { mainCurrency } = config;
   const { navigate } = useNavigation();
+  const { settings } = useStore();
 
   const onPressMainCurrencyViewItem = (value: string) => {
+    settings.setDefaultMainCurrency(value);
     navigate("settings");
   };
 
