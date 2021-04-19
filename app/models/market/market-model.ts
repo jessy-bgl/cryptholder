@@ -1,21 +1,21 @@
 import { Instance, types, SnapshotOut } from "mobx-state-tree";
-import { MarketService } from "../../services/market.service";
-import { CoinModel, ICoinSnapshot } from "./coin-model";
+import { CoinService } from "../../services/coin.service";
+import { CoinModel, ICoinSnapshot } from "../coin/coin-model";
 
 export const MarketModel = types
   .model({
     coins: types.optional(types.array(CoinModel), []),
   })
   .actions((self) => ({
-    saveCoinsMarketData(newCoinsMarketData: ICoinSnapshot[]) {
-      self.coins.replace(newCoinsMarketData);
+    saveCoinsData(newCoinsData: ICoinSnapshot[]) {
+      self.coins.replace(newCoinsData);
     },
   }))
   .actions((self) => ({
-    reloadCoinsMarketData: async () => {
-      const marketService = new MarketService();
-      const result = await marketService.getCoinsMarket();
-      if (result) self.saveCoinsMarketData(result);
+    reloadCoinsData: async () => {
+      const coinService = new CoinService();
+      const result = await coinService.getCoins();
+      if (result) self.saveCoinsData(result);
     },
   }));
 
