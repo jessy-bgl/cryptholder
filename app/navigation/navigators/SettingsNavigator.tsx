@@ -8,11 +8,11 @@ import Settings from "../../components/Settings";
 import SearchView, {
   SearchViewArrayProps,
 } from "../../components/View/SearchView";
-import { config } from "../../i18n/config";
+import { config } from "../../config/config";
 import { useStore } from "../../models/root-store/root-store-context";
 
 const SettingsViewLanguage = () => {
-  const { languages } = config;
+  const { i18n } = config;
   const { navigate } = useNavigation();
   const { settings } = useStore();
 
@@ -23,8 +23,8 @@ const SettingsViewLanguage = () => {
 
   return (
     <SearchView
-      array={languages}
-      defaultKey={settings.defaultLang}
+      array={i18n.languages}
+      defaultKey={settings.language}
       onPress={onPressSearchViewItem}
     />
   );
