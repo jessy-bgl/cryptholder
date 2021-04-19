@@ -10,7 +10,6 @@ import AlertsView from "../screens/Alerts";
 import FavoritesView from "../screens/Favorites";
 import PortfolioView from "../screens/Portfolio";
 import SettingsNavigator from "./navigators/SettingsNavigator";
-import { config } from "../i18n/config";
 
 export type MainStackParamList = {
   home: undefined;
