@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { List, Switch, Text, useTheme } from "react-native-paper";
 import { useTranslation } from "react-i18next";
+import { observer } from "mobx-react-lite";
 import ListItemDivider from "./List/ListItemDivider";
 import { useStore } from "../models/root-store/root-store-context";
 import ItemIonicon from "../components/Icon/ItemIonicon";
@@ -10,6 +11,7 @@ import { useNavigation } from "@react-navigation/core";
 const Settings = () => {
   const { t } = useTranslation("settings");
   const { settings } = useStore();
+  const { mainCurrency } = settings;
   const { colors } = useTheme();
   const { secondary } = colors;
   const { navigate } = useNavigation();
@@ -40,7 +42,9 @@ const Settings = () => {
         title={t("mainCurrency")}
         left={() => <ItemIonicon name={"cash-outline"} />}
         right={() => (
-          <Text style={{ color: secondary, ...styles.text }}>USD</Text>
+          <Text style={{ color: secondary, ...styles.text }}>
+            {mainCurrency.toUpperCase()}
+          </Text>
         )}
         onPress={() => navigate("mainCurrency")}
       />
@@ -71,7 +75,7 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default observer(Settings);
 
 const styles = StyleSheet.create({
   root: {
