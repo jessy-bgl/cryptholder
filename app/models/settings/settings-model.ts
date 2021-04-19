@@ -5,7 +5,7 @@ import { config } from "../../config/config";
 export const SettingsModel = types
   .model({
     darkMode: types.optional(types.boolean, true),
-    defaultLang: types.optional(types.string, config.i18n.default),
+    language: types.optional(types.string, config.i18n.default),
   })
   .actions((self) => ({
     toggleDarkMode: (value: boolean) => {
@@ -14,7 +14,7 @@ export const SettingsModel = types
   }))
   .actions((self) => ({
     setDefaultLang: (value: string) => {
-      self.defaultLang = value;
+      self.language = value;
       i18next.changeLanguage(value);
     },
   }));

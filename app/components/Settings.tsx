@@ -21,7 +21,7 @@ const Settings = () => {
         left={() => <ItemIonicon name={"globe-outline"} />}
         right={() => (
           <Text style={{ color: secondary, ...styles.text }}>
-            {settings.defaultLang.toUpperCase()}
+            {settings.language.toUpperCase()}
           </Text>
         )}
         onPress={() => navigate("language")}
