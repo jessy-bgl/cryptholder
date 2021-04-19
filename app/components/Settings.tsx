@@ -11,7 +11,7 @@ import { useNavigation } from "@react-navigation/core";
 const Settings = () => {
   const { t } = useTranslation("settings");
   const { settings } = useStore();
-  const { mainCurrency } = settings;
+  const { language, mainCurrency } = settings;
   const { colors } = useTheme();
   const { secondary } = colors;
   const { navigate } = useNavigation();
@@ -23,7 +23,7 @@ const Settings = () => {
         left={() => <ItemIonicon name={"globe-outline"} />}
         right={() => (
           <Text style={{ color: secondary, ...styles.text }}>
-            {settings.language.toUpperCase()}
+            {language.toUpperCase()}
           </Text>
         )}
         onPress={() => navigate("language")}
