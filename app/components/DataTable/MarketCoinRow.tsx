@@ -3,35 +3,29 @@ import { StyleSheet } from "react-native";
 import { View, Image } from "react-native";
 import { Text, DataTable, useTheme } from "react-native-paper";
 
-import { ICoin } from "../../models/market/coin-model";
+import { ICoin } from "../../models/coin/coin-model";
 import {
   numberCurrency,
   numberCurrencyAverage,
   numberPercentage,
 } from "../../utils/numbers";
 
-const MarketCoinRow = ({
-  market_cap_rank,
-  image,
-  symbol,
-  market_cap,
-  market_cap_change_percentage_24h,
-  current_price,
-  price_change_percentage_24h,
-}: ICoin) => {
+const MarketCoinRow = ({ symbol, image, market_data }: ICoin) => {
   const { colors } = useTheme();
 
-  const renderProfitLossColor = (nb: number): string =>
-    nb > 0 ? colors.accent : colors.error;
+  const renderProfitLossColor = (nb: number | null): string => {
+    if (nb === null) return "";
+    return nb > 0 ? colors.accent : colors.error;
+  };
 
   return (
     <DataTable.Row>
       <DataTable.Cell>
         <View style={styles.rankView}>
-          <Text>{market_cap_rank}</Text>
+          <Text>{market_data.market_cap_rank}</Text>
         </View>
         <View>
-          <Image style={styles.logo} source={{ uri: image }} />
+          <Image style={styles.logo} source={{ uri: image.thumb }} />
         </View>
         <View>
           <Text style={styles.coinName}>{`${symbol.toUpperCase()}`}</Text>
@@ -40,30 +34,50 @@ const MarketCoinRow = ({
       <DataTable.Cell numeric>
         <View>
           <Text style={styles.numericText}>
-            {numberCurrencyAverage(market_cap)}
+            {market_data.market_cap["usd"] !== null
+              ? numberCurrencyAverage(market_data.market_cap["usd"])
+              : ""}
           </Text>
           <Text
             style={{
-              color: renderProfitLossColor(market_cap_change_percentage_24h),
+              color: renderProfitLossColor(
+                market_data.market_cap_change_percentage_24h_in_currency["usd"]
+              ),
               ...styles.numericText,
             }}
           >
-            {numberPercentage(market_cap_change_percentage_24h / 100)}
+            {market_data.market_cap_change_percentage_24h_in_currency["usd"] !==
+            null
+              ? numberPercentage(
+                  market_data.market_cap_change_percentage_24h_in_currency[
+                    "usd"
+                  ]
+                )
+              : ""}
           </Text>
         </View>
       </DataTable.Cell>
       <DataTable.Cell numeric>
         <View>
           <Text style={styles.numericText}>
-            {numberCurrency(current_price)}
+            {market_data.current_price["usd"] !== null
+              ? numberCurrency(market_data.current_price["usd"])
+              : ""}
           </Text>
           <Text
             style={{
-              color: renderProfitLossColor(price_change_percentage_24h),
+              color: renderProfitLossColor(
+                market_data.price_change_percentage_24h_in_currency["usd"]
+              ),
               ...styles.numericText,
             }}
           >
-            {numberPercentage(price_change_percentage_24h / 100)}
+            {market_data.price_change_percentage_24h_in_currency["usd"] !== null
+              ? numberPercentage(
+                  market_data.price_change_percentage_24h_in_currency["usd"] /
+                    100
+                )
+              : ""}
           </Text>
         </View>
       </DataTable.Cell>

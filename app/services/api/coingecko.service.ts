@@ -6,22 +6,24 @@ import * as Types from "../types";
 // more info here : https://www.coingecko.com/en/api#explore-api
 const API_HOSTNAME: string = "https://api.coingecko.com/";
 const API_BASE_PATH: string = "api/v3";
-const API_COINSMARKET_PATH: string = "coins/markets";
-const API_PARAMS: object = {
-  vs_currency: "usd",
-  per_page: 20,
-  price_change_percentage: "1h,24h,7d",
+
+const API_COINS: { path: string; params: object } = {
+  path: "coins",
+  params: {
+    per_page: 50,
+    order: "market_cap_desc",
+  },
 };
 
 /**
- * Manages market requests.
+ * Manages coins requests.
  */
 export class CoingeckoService extends BaseHttpService {
-  async getCoinsMarkets(): Promise<Types.CoinMarketResult | undefined> {
+  async getCoins(): Promise<Types.CoinsResult | undefined> {
     try {
       const response: AxiosResponse = await this.get(
-        `${API_HOSTNAME}/${API_BASE_PATH}/${API_COINSMARKET_PATH}`,
-        { params: API_PARAMS }
+        `${API_HOSTNAME}/${API_BASE_PATH}/${API_COINS.path}`,
+        { params: API_COINS.params }
       );
       return response.data;
     } catch (e) {

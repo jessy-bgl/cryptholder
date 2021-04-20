@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { observer } from "mobx-react-lite";
 import { DataTable } from "react-native-paper";
 
-import { ICoin } from "../models/market/coin-model";
+import { ICoin } from "../models/coin/coin-model";
 import { useStore } from "../models/root-store/root-store-context";
 import MarketCoinRow from "../components/DataTable/MarketCoinRow";
 
@@ -19,7 +19,7 @@ const Main = () => {
   useEffect(() => {
     async function fetchCoinsMarketsData() {
       setLoadingMarketData(true);
-      await market.reloadCoinsMarketData();
+      await market.reloadCoinsData();
       setLoadingMarketData(false);
     }
     fetchCoinsMarketsData();
