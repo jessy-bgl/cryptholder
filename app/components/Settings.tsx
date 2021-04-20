@@ -7,7 +7,7 @@ import ListItemDivider from "./List/ListItemDivider";
 import { useStore } from "../models/root-store/root-store-context";
 import ItemIonicon from "../components/Icon/ItemIonicon";
 import { useNavigation } from "@react-navigation/core";
-import { capitalizeFistLetter } from "../utils/strings";
+import { capitalizeFirstLetter } from "../utils/strings";
 
 const Settings = () => {
   const { t } = useTranslation("settings");
@@ -59,7 +59,7 @@ const Settings = () => {
         left={() => <ItemIonicon name={"albums-outline"} />}
         right={() => (
           <Text style={{ color: secondary, ...styles.text }}>
-            {capitalizeFistLetter(mainScreen)}
+            {capitalizeFirstLetter(mainScreen)}
           </Text>
         )}
         onPress={() => navigate("homeScreen")}
