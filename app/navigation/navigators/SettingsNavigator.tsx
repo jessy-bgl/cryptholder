@@ -1,74 +1,11 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useTranslation } from "react-i18next";
-import { observer } from "mobx-react-lite";
-import { useNavigation } from "@react-navigation/native";
 
 import Settings from "../../components/Settings";
-import SearchList from "../../components/View/SearchList";
-import { config } from "../../config/config";
-import { useStore } from "../../models/root-store/root-store-context";
-
-const SettingsViewLanguage = () => {
-  const { language } = config;
-  const { navigate } = useNavigation();
-  const { settings } = useStore();
-
-  const onPressSearchViewItem = (value: string) => {
-    settings.setDefaultLang(value);
-    navigate("settings");
-  };
-
-  return (
-    <SearchList
-      array={language.params}
-      defaultKey={settings.language}
-      onPress={onPressSearchViewItem}
-    />
-  );
-};
-
-const SettingsViewLanguageObserver = observer(SettingsViewLanguage);
-
-const SettingsViewMainCurrency = () => {
-  const { mainCurrency } = config;
-  const { navigate } = useNavigation();
-  const { settings } = useStore();
-
-  const onPressMainCurrencyViewItem = (value: string) => {
-    settings.setDefaultMainCurrency(value);
-    navigate("settings");
-  };
-
-  return (
-    <SearchList
-      array={mainCurrency.params}
-      defaultKey={settings.mainCurrency}
-      onPress={onPressMainCurrencyViewItem}
-    />
-  );
-};
-
-const SettingsViewMainCurrencyObserver = observer(SettingsViewMainCurrency);
-
-const SettingsViewHomeScreen = () => {
-  const { mainScreen } = config;
-  const { navigate } = useNavigation();
-  const { settings } = useStore();
-
-  const onPressMainScreenViewItem = (value: string) => {
-    settings.setDefaultMainScreen(value);
-    navigate("settings");
-  };
-
-  return (
-    <SearchList
-      array={mainScreen.params}
-      defaultKey={settings.mainScreen}
-      onPress={onPressMainScreenViewItem}
-    />
-  );
-};
+import SettingsLanguage from "../../screens/settings/SettingsLanguage";
+import SettingsMainCurrency from "../../screens/settings/SettingsMainCurrency";
+import SettingsMainScreen from "../../screens/settings/SettingsMainScreen";
 
 export type SettingsStackParamList = {
   settings: undefined;
@@ -92,21 +29,21 @@ const SettingsNavigator = () => {
       />
       <Stack.Screen
         name="language"
-        component={SettingsViewLanguageObserver}
+        component={SettingsLanguage}
         options={{
           title: t("language"),
         }}
       />
       <Stack.Screen
         name="mainCurrency"
-        component={SettingsViewMainCurrencyObserver}
+        component={SettingsMainCurrency}
         options={{
           title: t("mainCurrency"),
         }}
       />
       <Stack.Screen
         name="homeScreen"
-        component={SettingsViewHomeScreen}
+        component={SettingsMainScreen}
         options={{
           title: t("homeScreen"),
         }}
