@@ -13,7 +13,7 @@ export type SearchViewProps = {
   onPress: (value: string) => void;
 };
 
-const SearchView = ({ array, defaultKey, onPress }: SearchViewProps) => {
+const SearchList = ({ array, defaultKey, onPress }: SearchViewProps) => {
   const [searchQuery, setSearchQuery] = React.useState("");
   const onChangeSearch = (query: string) => setSearchQuery(query);
 
@@ -44,4 +44,4 @@ const SearchView = ({ array, defaultKey, onPress }: SearchViewProps) => {
   );
 };
 
-export default SearchView;
+export default SearchList;

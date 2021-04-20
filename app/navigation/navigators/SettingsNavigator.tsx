@@ -5,9 +5,9 @@ import { observer } from "mobx-react-lite";
 import { useNavigation } from "@react-navigation/native";
 
 import Settings from "../../components/Settings";
-import SearchView, {
+import SearchList, {
   SearchViewArrayProps,
-} from "../../components/View/SearchView";
+} from "../../components/View/SearchList";
 import { config } from "../../config/config";
 import { useStore } from "../../models/root-store/root-store-context";
 
@@ -22,7 +22,7 @@ const SettingsViewLanguage = () => {
   };
 
   return (
-    <SearchView
+    <SearchList
       array={i18n.languages}
       defaultKey={settings.language}
       onPress={onPressSearchViewItem}
@@ -43,7 +43,7 @@ const SettingsViewMainCurrency = () => {
   };
 
   return (
-    <SearchView
+    <SearchList
       array={mainCurrency.currency}
       defaultKey={settings.mainCurrency}
       onPress={onPressMainCurrencyViewItem}
@@ -64,7 +64,7 @@ const SettingsViewHomeScreen = () => {
   };
 
   return (
-    <SearchView
+    <SearchList
       array={mainScreen.screen}
       defaultKey={settings.mainScreen}
       onPress={onPressMainScreenViewItem}
