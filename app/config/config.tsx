@@ -1,39 +1,24 @@
+import { configLang, SupportedLanguage } from "./language";
+import { configMainCurrency, SupportedMainCurrencies } from "./mainCurrency";
+import { configMainScreen, SupportedMainScreens } from "./mainScreen";
+
+export interface Config<T extends ConfigType> {
+  params: ConfigParam<T>[];
+  default: T;
+}
+
+export interface ConfigParam<T extends ConfigType> {
+  id: T;
+  title: string;
+}
+
+export type ConfigType =
+  | SupportedLanguage
+  | SupportedMainScreens
+  | SupportedMainCurrencies;
+
 export const config = {
-  i18n: {
-    languages: [
-      { id: "en", title: "English" },
-      { id: "fr", title: "Français" },
-    ],
-    default: "en",
-  },
-  mainCurrency: {
-    currency: [
-      {
-        id: "usd",
-        title: "USD",
-      },
-      {
-        id: "eur",
-        title: "EUR",
-      },
-    ],
-    default: "usd",
-  },
-  mainScreen: {
-    screen: [
-      {
-        id: "main",
-        title: "Main",
-      },
-      {
-        id: "favorites",
-        title: "Favorites",
-      },
-      {
-        id: "portfolio",
-        title: "Portfolio",
-      },
-    ],
-    default: "main",
-  },
+  language: configLang,
+  mainCurrency: configMainCurrency,
+  mainScreen: configMainScreen,
 };

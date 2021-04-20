@@ -10,7 +10,7 @@ import marketFr from "./market/fr.json";
 import { config } from "../config/config";
 
 i18next.use(initReactI18next).init({
-  fallbackLng: config.i18n.default,
+  fallbackLng: config.language.default,
   debug: __DEV__,
   interpolation: {
     escapeValue: false, // react already safes from xss

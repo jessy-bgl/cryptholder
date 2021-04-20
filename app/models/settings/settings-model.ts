@@ -5,7 +5,7 @@ import { config } from "../../config/config";
 export const SettingsModel = types
   .model({
     darkMode: types.optional(types.boolean, true),
-    language: types.optional(types.string, config.i18n.default),
+    language: types.optional(types.string, config.language.default),
     mainCurrency: types.optional(types.string, config.mainCurrency.default),
     mainScreen: types.optional(types.string, config.mainScreen.default),
   })
