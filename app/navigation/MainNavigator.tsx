@@ -43,7 +43,7 @@ const resetStackOnTabPress = ({ navigation }: MainStackScreenProps) => ({
         const tabName = tab?.name;
         const stackKey = tab?.state?.key;
 
-        if (tabName === "settings") {
+        if (tabName === "settings" && stackKey != undefined) {
           // Pass the stack key that we want to reset and use popToTop
           // to reset it
           navigation.dispatch({
