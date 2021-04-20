@@ -51,7 +51,7 @@ const MarketCoinRow = ({ symbol, image, market_data }: ICoin) => {
               ? numberPercentage(
                   market_data.market_cap_change_percentage_24h_in_currency[
                     "usd"
-                  ]
+                  ] / 100
                 )
               : ""}
           </Text>
