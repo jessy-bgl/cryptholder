@@ -1,12 +1,33 @@
+import i18next from "i18next";
 import { Instance, types, SnapshotOut } from "mobx-state-tree";
+import { config } from "../../config/config";
 
 export const SettingsModel = types
   .model({
     darkMode: types.optional(types.boolean, true),
+    language: types.optional(types.string, config.language.default),
+    mainCurrency: types.optional(types.string, config.mainCurrency.default),
+    mainScreen: types.optional(types.string, config.mainScreen.default),
   })
   .actions((self) => ({
     toggleDarkMode: (value: boolean) => {
       self.darkMode = !self.darkMode;
+    },
+  }))
+  .actions((self) => ({
+    setDefaultLang: (value: string) => {
+      self.language = value;
+      i18next.changeLanguage(value);
+    },
+  }))
+  .actions((self) => ({
+    setDefaultMainCurrency: (value: string) => {
+      self.mainCurrency = value;
+    },
+  }))
+  .actions((self) => ({
+    setDefaultMainScreen: (value: string) => {
+      self.mainScreen = value;
     },
   }));
 

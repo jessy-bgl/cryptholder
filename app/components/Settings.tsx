@@ -2,15 +2,20 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { List, Switch, Text, useTheme } from "react-native-paper";
 import { useTranslation } from "react-i18next";
+import { observer } from "mobx-react-lite";
 import ListItemDivider from "./List/ListItemDivider";
 import { useStore } from "../models/root-store/root-store-context";
 import ItemIonicon from "../components/Icon/ItemIonicon";
+import { useNavigation } from "@react-navigation/core";
+import { capitalizeFirstLetter } from "../utils/strings";
 
 const Settings = () => {
   const { t } = useTranslation("settings");
   const { settings } = useStore();
+  const { language, mainCurrency, mainScreen } = settings;
   const { colors } = useTheme();
   const { secondary } = colors;
+  const { navigate } = useNavigation();
 
   return (
     <List.Section style={styles.root}>
@@ -18,8 +23,11 @@ const Settings = () => {
         title={t("language")}
         left={() => <ItemIonicon name={"globe-outline"} />}
         right={() => (
-          <Text style={{ color: secondary, ...styles.text }}>FR</Text>
+          <Text style={{ color: secondary, ...styles.text }}>
+            {language.toUpperCase()}
+          </Text>
         )}
+        onPress={() => navigate("language")}
       />
       <ListItemDivider
         title={t("theme")}
@@ -35,8 +43,11 @@ const Settings = () => {
         title={t("mainCurrency")}
         left={() => <ItemIonicon name={"cash-outline"} />}
         right={() => (
-          <Text style={{ color: secondary, ...styles.text }}>USD</Text>
+          <Text style={{ color: secondary, ...styles.text }}>
+            {mainCurrency.toUpperCase()}
+          </Text>
         )}
+        onPress={() => navigate("mainCurrency")}
       />
       <ListItemDivider
         title={t("portfolioOptions")}
@@ -47,8 +58,11 @@ const Settings = () => {
         title={t("homeScreen")}
         left={() => <ItemIonicon name={"albums-outline"} />}
         right={() => (
-          <Text style={{ color: secondary, ...styles.text }}>Accueil</Text>
+          <Text style={{ color: secondary, ...styles.text }}>
+            {capitalizeFirstLetter(mainScreen)}
+          </Text>
         )}
+        onPress={() => navigate("homeScreen")}
       />
       <ListItemDivider
         title={t("security")}
@@ -64,7 +78,7 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default observer(Settings);
 
 const styles = StyleSheet.create({
   root: {

@@ -1,13 +1,18 @@
 import React from "react";
 import {
-  DefaultTheme,
-  DarkTheme,
+  DefaultTheme as PaperDefaultTheme,
+  DarkTheme as PaperDarkTheme,
   Provider as PaperProvider,
 } from "react-native-paper";
 import { observer } from "mobx-react-lite";
-
-import BottomTabNavigator from "./navigators/BottomTab";
 import { useStore } from "../models/root-store/root-store-context";
+import {
+  DefaultTheme as NavigationDefaultTheme,
+  DarkTheme as NavigationDarkTheme,
+  NavigationContainer,
+} from "@react-navigation/native";
+
+import MainNavigator from "./MainNavigator";
 
 declare global {
   namespace ReactNativePaper {
@@ -17,19 +22,23 @@ declare global {
   }
 }
 
-const lightTheme = {
-  ...DefaultTheme,
+const CombinedLightTheme = {
+  ...NavigationDefaultTheme,
+  ...PaperDefaultTheme,
   colors: {
-    ...DefaultTheme.colors,
+    ...NavigationDefaultTheme.colors,
+    ...PaperDefaultTheme.colors,
     primary: "#344966",
     secondary: "#777777",
   },
 };
 
-const darkTheme = {
-  ...DarkTheme,
+const CombinedDarkTheme = {
+  ...NavigationDarkTheme,
+  ...PaperDarkTheme,
   colors: {
-    ...DarkTheme.colors,
+    ...NavigationDarkTheme.colors,
+    ...PaperDarkTheme.colors,
     secondary: "#777777",
   },
 };
@@ -38,8 +47,14 @@ export const Navigation = () => {
   const { settings } = useStore();
 
   return (
-    <PaperProvider theme={settings.darkMode ? darkTheme : lightTheme}>
-      <BottomTabNavigator />
+    <PaperProvider
+      theme={settings.darkMode ? CombinedDarkTheme : CombinedLightTheme}
+    >
+      <NavigationContainer
+        theme={settings.darkMode ? CombinedDarkTheme : CombinedLightTheme}
+      >
+        <MainNavigator />
+      </NavigationContainer>
     </PaperProvider>
   );
 };
