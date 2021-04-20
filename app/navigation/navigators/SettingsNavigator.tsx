@@ -2,7 +2,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useTranslation } from "react-i18next";
 
-import Settings from "../../components/Settings";
+import Settings from "../../screens/settings/Settings";
 import SettingsLanguage from "../../screens/settings/SettingsLanguage";
 import SettingsMainCurrency from "../../screens/settings/SettingsMainCurrency";
 import SettingsMainScreen from "../../screens/settings/SettingsMainScreen";
