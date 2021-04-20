@@ -25,19 +25,18 @@ const SearchList = <T extends ConfigType>({
         value={searchQuery}
       />
       <List.Section>
-        {array.map(({ id, title }: ConfigParam<T>) =>
-          title.toLowerCase().includes(searchQuery.toLowerCase()) ? (
-            <List.Item
-              key={id}
-              title={title}
-              right={() =>
-                id == defaultKey ? <ItemIonicon name="checkmark" /> : <></>
-              }
-              onPress={() => onPress(id)}
-            />
-          ) : (
-            <></>
-          )
+        {array.map(
+          ({ id, title }: ConfigParam<T>) =>
+            title.toLowerCase().includes(searchQuery.toLowerCase()) && (
+              <List.Item
+                key={id}
+                title={title}
+                right={() =>
+                  id == defaultKey ? <ItemIonicon name="checkmark" /> : <></>
+                }
+                onPress={() => onPress(id)}
+              />
+            )
         )}
       </List.Section>
     </>
