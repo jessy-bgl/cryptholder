@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import {
+  initialWindowMetrics,
+  SafeAreaProvider,
+} from "react-native-safe-area-context";
 
 import Navigation from "./app/navigation";
 import LoadingScreenComponent from "./app/components/LoadingScreen";
@@ -23,7 +26,7 @@ export default function App() {
 
   return (
     <RootStoreProvider value={rootStore}>
-      <SafeAreaProvider>
+      <SafeAreaProvider initialMetrics={initialWindowMetrics}>
         <Navigation />
       </SafeAreaProvider>
     </RootStoreProvider>
