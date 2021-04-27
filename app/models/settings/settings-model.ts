@@ -8,6 +8,7 @@ export const SettingsModel = types
     language: types.optional(types.string, config.language.default),
     mainCurrency: types.optional(types.string, config.mainCurrency.default),
     mainScreen: types.optional(types.string, config.mainScreen.default),
+    favorites: types.optional(types.array(types.string), []),
   })
   .actions((self) => ({
     toggleDarkMode: (value: boolean) => {
@@ -28,6 +29,25 @@ export const SettingsModel = types
   .actions((self) => ({
     setDefaultMainScreen: (value: string) => {
       self.mainScreen = value;
+    },
+  }))
+  .actions((self) => ({
+    addFavorite: (val: string) => {
+      self.favorites.push(val);
+    },
+  }))
+  .actions((self) => ({
+    removeFavorite: (val: string) => {
+      self.favorites.splice(self.favorites.indexOf(val), 1);
+    },
+  }))
+  .actions((self) => ({
+    toggleFavorite: (val: string) => {
+      if (self.favorites.includes(val)) {
+        self.removeFavorite(val);
+      } else {
+        self.addFavorite(val);
+      }
     },
   }));
 
