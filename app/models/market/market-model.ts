@@ -7,7 +7,7 @@ export const MarketModel = types
     coins: types.optional(types.array(CoinModel), []),
   })
   .actions((self) => ({
-    saveCoinsData(newCoinsData: ICoinSnapshot[]) {
+    saveCoinsData: async (newCoinsData: ICoinSnapshot[]) => {
       self.coins.replace(newCoinsData);
     },
   }))
@@ -15,7 +15,7 @@ export const MarketModel = types
     reloadCoinsData: async () => {
       const coinService = new CoinService();
       const result = await coinService.getCoins();
-      if (result) self.saveCoinsData(result);
+      if (result) await self.saveCoinsData(result);
     },
   }));
 
