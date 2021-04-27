@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView } from "react-native";
+import { FlatList } from "react-native";
 import { useTranslation } from "react-i18next";
 import { observer } from "mobx-react-lite";
 import { DataTable } from "react-native-paper";
@@ -25,20 +25,23 @@ const Main = () => {
     fetchCoinsMarketsData();
   }, []);
 
+  const renderItem = ({ item }: { item: any }) => {
+    return <MarketCoinRow key={item.id} {...item} />;
+  };
+
   return (
-    <ScrollView>
-      <DataTable>
-        <DataTable.Header>
-          <DataTable.Title>{t("name")}</DataTable.Title>
-          <DataTable.Title numeric>{t("cap_24h")}</DataTable.Title>
-          <DataTable.Title numeric>{t("price_24h")}</DataTable.Title>
-        </DataTable.Header>
-        {coins.map((coin: ICoin) => (
-          <MarketCoinRow {...coin} key={coin.id} />
-        ))}
-      </DataTable>
-    </ScrollView>
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={coins}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
+    </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: { flex: 1, width: "100%" },
+});
 
 export default observer(Main);
