@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView } from "react-native";
+import { RefreshControl, StyleSheet, ScrollView } from "react-native";
 import { useTranslation } from "react-i18next";
 import { observer } from "mobx-react-lite";
 import { DataTable } from "react-native-paper";
 
-import { ICoin } from "../models/coin/coin-model";
+import { ICoinMarket } from "../models/market/coin-market-model";
 import { useStore } from "../models/root-store/root-store-context";
 import MarketCoinRow from "../components/DataTable/MarketCoinRow";
 
@@ -19,21 +19,30 @@ const Main = () => {
   useEffect(() => {
     async function fetchCoinsMarketsData() {
       setLoadingMarketData(true);
-      await market.reloadCoinsData();
+      await market.reloadCoinsMarketsData();
       setLoadingMarketData(false);
     }
     fetchCoinsMarketsData();
   }, []);
 
+  const onRefresh = React.useCallback(() => {
+    setLoadingMarketData(true);
+    market.reloadCoinsMarketsData().then(() => setLoadingMarketData(false));
+  }, []);
+
   return (
-    <ScrollView>
+    <ScrollView
+      refreshControl={
+        <RefreshControl refreshing={loadingMarketData} onRefresh={onRefresh} />
+      }
+    >
       <DataTable>
         <DataTable.Header>
           <DataTable.Title>{t("name")}</DataTable.Title>
           <DataTable.Title numeric>{t("cap_24h")}</DataTable.Title>
           <DataTable.Title numeric>{t("price_24h")}</DataTable.Title>
         </DataTable.Header>
-        {coins.map((coin: ICoin) => (
+        {coins.map((coin: ICoinMarket) => (
           <MarketCoinRow {...coin} key={coin.id} />
         ))}
       </DataTable>
