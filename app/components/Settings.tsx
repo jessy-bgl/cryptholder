@@ -19,6 +19,7 @@ const Settings = () => {
 
   return (
     <List.Section style={styles.root}>
+      <Text style={styles.title}>{t("appearance").toUpperCase()}</Text>
       <ListItemDivider
         title={t("language")}
         left={() => <ItemIonicon name={"globe-outline"} />}
@@ -56,15 +57,18 @@ const Settings = () => {
         )}
         onPress={() => navigate("homeScreen")}
       />
+      <Text style={styles.title}>{t("security").toUpperCase()}</Text>
       <ListItemDivider
         title={t("security")}
         left={() => <ItemIonicon name={"lock-closed-outline"} />}
         right={() => <ItemIonicon name={"chevron-forward-outline"} />}
       />
+      <Text style={styles.title}>{t("other").toUpperCase()}</Text>
       <ListItemDivider
         title={t("about")}
         left={() => <ItemIonicon name={"rocket-outline"} />}
         right={() => <ItemIonicon name={"chevron-forward-outline"} />}
+        onPress={() => navigate("about")}
       />
     </List.Section>
   );

@@ -6,5 +6,7 @@
   "portfolioOptions": "Portfolio Settings",
   "homeScreen": "Default Home Screen",
   "security": "Security Settings",
-  "about": "About CryptHolder"
+  "about": "About CryptHolder",
+  "appearance": "Appearance Settings",
+  "other": "Other"
 }

@@ -6,5 +6,7 @@
   "portfolioOptions": "Options du portefeuille",
   "homeScreen": "Page d'Accueil",
   "security": "Options de sécutité",
-  "about": "A propos de CryptHolder"
+  "about": "A propos de CryptHolder",
+  "appearance": "Options d'apparence",
+  "other": "Autres"
 }
