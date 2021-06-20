@@ -15,8 +15,8 @@ import Clipboard from "expo-clipboard";
 import ItemIonicon from "../../components/Icon/ItemIonicon";
 import app from "../../../app.json";
 import logo from "../../../assets/images/logo.png";
-import bitcoinLogo from "../../../assets/images/bitcoin.png";
-import ethereumLogo from "../../../assets/images/ethereum.png";
+import BitcoinLogo from "../../../assets/images/bitcoin.svg";
+import EthereumLogo from "../../../assets/images/ethereum.svg";
 
 const SettingsAbout = () => {
   const { t } = useTranslation("settings");
@@ -116,7 +116,14 @@ const SettingsAbout = () => {
       <List.Section style={styles.root}>
         <List.Item
           title={t("bitcoin")}
-          left={() => <Image source={bitcoinLogo} style={styles.donateLogo} />}
+          left={() => (
+            <BitcoinLogo
+              width={25}
+              height={25}
+              fill={theme.colors.text}
+              style={styles.donateLogo}
+            />
+          )}
           description={t("copyAddress")}
           onPress={() => {
             Clipboard.setString("");
@@ -125,7 +132,14 @@ const SettingsAbout = () => {
         />
         <List.Item
           title={t("ethereum")}
-          left={() => <Image source={ethereumLogo} style={styles.donateLogo} />}
+          left={() => (
+            <EthereumLogo
+              width={25}
+              height={25}
+              fill={theme.colors.text}
+              style={styles.donateLogo}
+            />
+          )}
           description={t("copyAddress")}
           onPress={() => {
             Clipboard.setString("");
@@ -179,7 +193,7 @@ const createStyles = (theme: ReactNativePaper.Theme) => {
       paddingLeft: 10,
       paddingTop: 25,
       fontWeight: "bold",
-      color: theme.colors.primary,
+      color: theme.colors.primaryText,
       backgroundColor: theme.colors.background,
     },
     view: {
@@ -209,8 +223,6 @@ const createStyles = (theme: ReactNativePaper.Theme) => {
     },
     donateLogo: {
       marginTop: 14,
-      width: 26,
-      height: 26,
     },
   });
 };
