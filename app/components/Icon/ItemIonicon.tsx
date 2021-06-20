@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "react-native-paper";
@@ -10,21 +10,20 @@ type ItemIconProps = {
 };
 
 const ItemIonicon = ({ name, color, size = 20 }: ItemIconProps) => {
-  const { colors } = useTheme();
-  const { primary } = colors;
-  return (
-    <Ionicons
-      size={size}
-      name={name}
-      style={{ color: color ? color : primary, ...styles.icon }}
-    />
-  );
+  const theme = useTheme();
+  const styles = useMemo(() => createStyles(theme), [theme]);
+
+  return <Ionicons size={size} name={name} style={styles.icon} />;
 };
 
 export default ItemIonicon;
 
-const styles = StyleSheet.create({
-  icon: {
-    textAlignVertical: "center",
-  },
-});
+const createStyles = (theme: ReactNativePaper.Theme) => {
+  return StyleSheet.create({
+    icon: {
+      textAlignVertical: "center",
+      textAlign: "center",
+      color: theme.colors.text,
+    },
+  });
+};
