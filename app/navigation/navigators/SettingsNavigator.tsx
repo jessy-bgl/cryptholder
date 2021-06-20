@@ -6,6 +6,7 @@ import Settings from "../../screens/settings/Settings";
 import SettingsLanguage from "../../screens/settings/SettingsLanguage";
 import SettingsMainCurrency from "../../screens/settings/SettingsMainCurrency";
 import SettingsMainScreen from "../../screens/settings/SettingsMainScreen";
+import { useTheme } from "react-native-paper";
 
 export type SettingsStackParamList = {
   settings: undefined;
@@ -18,6 +19,8 @@ const Stack = createStackNavigator<SettingsStackParamList>();
 
 const SettingsNavigator = () => {
   const { t } = useTranslation("settings");
+  const { colors } = useTheme();
+
   return (
     <Stack.Navigator initialRouteName="settings">
       <Stack.Screen
@@ -25,6 +28,10 @@ const SettingsNavigator = () => {
         component={Settings}
         options={{
           title: t("settings"),
+          headerStyle: {
+            backgroundColor: colors.background,
+          },
+          headerTintColor: colors.primary,
         }}
       />
       <Stack.Screen
@@ -32,6 +39,10 @@ const SettingsNavigator = () => {
         component={SettingsLanguage}
         options={{
           title: t("language"),
+          headerStyle: {
+            backgroundColor: colors.background,
+          },
+          headerTintColor: colors.primary,
         }}
       />
       <Stack.Screen
@@ -39,6 +50,10 @@ const SettingsNavigator = () => {
         component={SettingsMainCurrency}
         options={{
           title: t("mainCurrency"),
+          headerStyle: {
+            backgroundColor: colors.background,
+          },
+          headerTintColor: colors.primary,
         }}
       />
       <Stack.Screen
@@ -46,6 +61,10 @@ const SettingsNavigator = () => {
         component={SettingsMainScreen}
         options={{
           title: t("homeScreen"),
+          headerStyle: {
+            backgroundColor: colors.background,
+          },
+          headerTintColor: colors.primary,
         }}
       />
     </Stack.Navigator>

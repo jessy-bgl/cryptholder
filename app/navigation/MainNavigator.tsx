@@ -1,9 +1,10 @@
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import { StackActions, useTheme } from "@react-navigation/native";
+import { StackActions } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import { StackScreenProps } from "@react-navigation/stack";
+import { useTheme } from "react-native-paper";
 
 import MainView from "../screens/Main";
 import AlertsView from "../screens/Alerts";
@@ -67,6 +68,7 @@ const MainNavigator = () => {
       shifting={true}
       sceneAnimationEnabled={false}
       barStyle={{ backgroundColor: primary }}
+      activeColor={colors.background}
     >
       <Tab.Screen
         name="home"
@@ -76,6 +78,7 @@ const MainNavigator = () => {
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="stats-chart" color={color} />
           ),
+          tabBarColor: colors.primary,
         }}
         listeners={resetStackOnTabPress}
       />
@@ -85,6 +88,7 @@ const MainNavigator = () => {
         options={{
           title: t("favorites"),
           tabBarIcon: ({ color }) => <TabBarIcon name="star" color={color} />,
+          tabBarColor: colors.primary,
         }}
         listeners={resetStackOnTabPress}
       />
@@ -96,6 +100,7 @@ const MainNavigator = () => {
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="briefcase" color={color} />
           ),
+          tabBarColor: colors.primary,
         }}
         listeners={resetStackOnTabPress}
       />
@@ -107,6 +112,7 @@ const MainNavigator = () => {
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="notifications" color={color} />
           ),
+          tabBarColor: colors.primary,
         }}
         listeners={resetStackOnTabPress}
       />
