@@ -9,7 +9,7 @@ type ItemIconProps = {
   size?: number;
 };
 
-const ItemIonicon = ({ name, color, size = 20 }: ItemIconProps) => {
+const ItemIonicon = ({ name, color, size = 17 }: ItemIconProps) => {
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
 
