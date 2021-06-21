@@ -19,6 +19,7 @@ export const setupRootStore = async () => {
     // load data from storage
     data = (await storage.load(ROOT_STATE_STORAGE_KEY)) || {};
     rootStore = RootStoreModel.create(data);
+    rootStore.settings.setDefaultLang(rootStore.settings.language);
   } catch (e) {
     // if there's any problems loading, then let's at least fallback to
     // an empty state instead of crashing.
