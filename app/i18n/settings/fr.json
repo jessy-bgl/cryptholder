@@ -8,5 +8,19 @@
   "security": "Options de sécutité",
   "about": "A propos de CryptHolder",
   "appearance": "Options d'apparence",
-  "other": "Autres"
+  "other": "Autres",
+  "version": "Version",
+  "authors": "Contributeurs",
+  "authorsDescription": "Les développeurs de CryptHolder",
+  "license": "Licence",
+  "licenseDescription": "GNU GENERAL PUBLIC LICENSE Version 3",
+  "sources": "Sources",
+  "changelog": "Changelog",
+  "bugs": "Bugs",
+  "donation": "Dons",
+  "media": "Nous contacter",
+  "mail": "Addresse Email",
+  "bitcoin": "Donner avec Bitcoin",
+  "ethereum": "Donner avec Ethereum",
+  "copyAddress": "Cliquez ici pour copier l'adresse"
 }

@@ -6,6 +6,7 @@ import Settings from "../../screens/settings/Settings";
 import SettingsLanguage from "../../screens/settings/SettingsLanguage";
 import SettingsMainCurrency from "../../screens/settings/SettingsMainCurrency";
 import SettingsMainScreen from "../../screens/settings/SettingsMainScreen";
+import SettingsAbout from "../../screens/settings/SettingsAbout";
 import { useTheme } from "react-native-paper";
 
 export type SettingsStackParamList = {
@@ -13,6 +14,7 @@ export type SettingsStackParamList = {
   language: undefined;
   mainCurrency: undefined;
   homeScreen: undefined;
+  about: undefined;
 };
 
 const Stack = createStackNavigator<SettingsStackParamList>();
@@ -61,6 +63,17 @@ const SettingsNavigator = () => {
         component={SettingsMainScreen}
         options={{
           title: t("homeScreen"),
+          headerStyle: {
+            backgroundColor: colors.background,
+          },
+          headerTintColor: colors.primary,
+        }}
+      />
+      <Stack.Screen
+        name="about"
+        component={SettingsAbout}
+        options={{
+          title: t("about"),
           headerStyle: {
             backgroundColor: colors.background,
           },

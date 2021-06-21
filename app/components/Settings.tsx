@@ -88,7 +88,7 @@ const createStyles = (theme: ReactNativePaper.Theme) => {
     text: {
       textAlignVertical: "center",
       fontSize: 18,
-      color: theme.colors.primary,
+      color: theme.colors.secondaryText,
     },
     title: {
       fontSize: 13,
