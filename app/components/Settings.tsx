@@ -95,7 +95,7 @@ const createStyles = (theme: ReactNativePaper.Theme) => {
       paddingLeft: 10,
       paddingTop: 25,
       fontWeight: "bold",
-      color: theme.colors.primary,
+      color: theme.colors.primaryText,
       backgroundColor: theme.colors.background,
     },
   });

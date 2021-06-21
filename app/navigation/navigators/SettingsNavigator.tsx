@@ -31,9 +31,9 @@ const SettingsNavigator = () => {
         options={{
           title: t("settings"),
           headerStyle: {
-            backgroundColor: colors.background,
+            backgroundColor: colors.secondary,
           },
-          headerTintColor: colors.primary,
+          headerTintColor: colors.text,
         }}
       />
       <Stack.Screen
@@ -42,9 +42,9 @@ const SettingsNavigator = () => {
         options={{
           title: t("language"),
           headerStyle: {
-            backgroundColor: colors.background,
+            backgroundColor: colors.secondary,
           },
-          headerTintColor: colors.primary,
+          headerTintColor: colors.text,
         }}
       />
       <Stack.Screen
@@ -53,9 +53,9 @@ const SettingsNavigator = () => {
         options={{
           title: t("mainCurrency"),
           headerStyle: {
-            backgroundColor: colors.background,
+            backgroundColor: colors.secondary,
           },
-          headerTintColor: colors.primary,
+          headerTintColor: colors.text,
         }}
       />
       <Stack.Screen
@@ -64,9 +64,9 @@ const SettingsNavigator = () => {
         options={{
           title: t("homeScreen"),
           headerStyle: {
-            backgroundColor: colors.background,
+            backgroundColor: colors.secondary,
           },
-          headerTintColor: colors.primary,
+          headerTintColor: colors.text,
         }}
       />
       <Stack.Screen
@@ -75,9 +75,9 @@ const SettingsNavigator = () => {
         options={{
           title: t("about"),
           headerStyle: {
-            backgroundColor: colors.background,
+            backgroundColor: colors.secondary,
           },
-          headerTintColor: colors.primary,
+          headerTintColor: colors.text,
         }}
       />
     </Stack.Navigator>

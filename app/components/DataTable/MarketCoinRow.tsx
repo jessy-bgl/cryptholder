@@ -23,7 +23,7 @@ const MarketCoinRow = ({
 
   const renderProfitLossColor = (nb: number | null): string => {
     if (nb === null) return "";
-    return nb > 0 ? colors.accent : colors.error;
+    return nb > 0 ? colors.green : colors.red;
   };
 
   return (

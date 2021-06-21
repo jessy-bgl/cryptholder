@@ -11,6 +11,7 @@ import AlertsView from "../screens/Alerts";
 import FavoritesView from "../screens/Favorites";
 import PortfolioView from "../screens/Portfolio";
 import SettingsNavigator from "./navigators/SettingsNavigator";
+import { useStore } from "../models/root-store/root-store-context";
 
 export type MainStackParamList = {
   home: undefined;
@@ -60,6 +61,7 @@ const resetStackOnTabPress = ({ navigation }: MainStackScreenProps) => ({
 const MainNavigator = () => {
   const { t } = useTranslation("common");
   const { colors } = useTheme();
+  const { settings } = useStore();
   const { primary } = colors;
 
   return (
@@ -68,7 +70,7 @@ const MainNavigator = () => {
       shifting={true}
       sceneAnimationEnabled={false}
       barStyle={{ backgroundColor: primary }}
-      activeColor={colors.background}
+      activeColor={settings.darkMode ? colors.text : colors.background}
     >
       <Tab.Screen
         name="home"
