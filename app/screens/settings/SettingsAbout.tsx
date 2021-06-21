@@ -55,156 +55,160 @@ const SettingsAbout = () => {
   }, []);
 
   return (
-    <ScrollView>
-      <Image source={logo} style={styles.logo} />
-      <Text style={styles.intro}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
-      </Text>
-      <Divider />
-      <Text style={styles.title}>{t("about").toUpperCase()}</Text>
-      <List.Section style={styles.root}>
-        <List.Item
-          title={t("version")}
-          left={() => (
-            <ItemIonicon
-              name={"help-circle-outline"}
-              color={theme.colors.primary}
-              size={25}
-            />
-          )}
-          description={app.expo.version}
-          onPress={() => {
-            Linking.openURL(
-              "https://github.com/jessy-bgl/cryptholder/releases"
-            );
-          }}
-        />
-        <List.Item
-          title={t("authors")}
-          left={() => (
-            <ItemIonicon
-              name={"code-slash"}
-              color={theme.colors.onSurface}
-              size={25}
-            />
-          )}
-          description={t("authorsDescription")}
-          onPress={() => {
-            Linking.openURL(
-              "https://github.com/jessy-bgl/cryptholder/graphs/contributors"
-            );
-          }}
-        />
-        <List.Item
-          title={t("license")}
-          left={() => (
-            <ItemIonicon
-              name={"book-outline"}
-              color={theme.colors.onSurface}
-              size={25}
-            />
-          )}
-          description={t("licenseDescription")}
-          onPress={() => {
-            Linking.openURL("https://www.gnu.org/licenses/gpl-3.0.html");
-          }}
-        />
-      </List.Section>
-      <View style={styles.view}>
-        <Button
-          style={styles.button}
-          mode="contained"
-          onPress={() => {
-            Linking.openURL("https://github.com/jessy-bgl/cryptholder");
-          }}
-        >
-          <Text style={styles.buttonText}>{t("sources")}</Text>
-        </Button>
-        <Portal>
-          <Modal
-            visible={modalVisible}
-            onDismiss={hideModal}
-            contentContainerStyle={styles.modal}
+    <>
+      <ScrollView>
+        <Image source={logo} style={styles.logo} />
+        <Text style={styles.intro}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </Text>
+        <Divider />
+        <Text style={styles.title}>{t("about").toUpperCase()}</Text>
+        <List.Section style={styles.root}>
+          <List.Item
+            title={t("version")}
+            left={() => (
+              <ItemIonicon
+                name={"help-circle-outline"}
+                color={theme.colors.primary}
+                size={25}
+              />
+            )}
+            description={app.expo.version}
+            onPress={() => {
+              Linking.openURL(
+                "https://github.com/jessy-bgl/cryptholder/releases"
+              );
+            }}
+          />
+          <List.Item
+            title={t("authors")}
+            left={() => (
+              <ItemIonicon
+                name={"code-slash"}
+                color={theme.colors.onSurface}
+                size={25}
+              />
+            )}
+            description={t("authorsDescription")}
+            onPress={() => {
+              Linking.openURL(
+                "https://github.com/jessy-bgl/cryptholder/graphs/contributors"
+              );
+            }}
+          />
+          <List.Item
+            title={t("license")}
+            left={() => (
+              <ItemIonicon
+                name={"book-outline"}
+                color={theme.colors.onSurface}
+                size={25}
+              />
+            )}
+            description={t("licenseDescription")}
+            onPress={() => {
+              Linking.openURL("https://www.gnu.org/licenses/gpl-3.0.html");
+            }}
+          />
+        </List.Section>
+        <View style={styles.view}>
+          <Button
+            style={styles.button}
+            mode="contained"
+            onPress={() => {
+              Linking.openURL("https://github.com/jessy-bgl/cryptholder");
+            }}
           >
-            <ScrollView>
-              <Markdown styles={markdownStyles}>{changelog}</Markdown>
-            </ScrollView>
-          </Modal>
-        </Portal>
-        <Button style={styles.button} mode="contained" onPress={showModal}>
-          <Text style={styles.buttonText}>{t("changelog")}</Text>
-        </Button>
-        <Button
-          style={styles.button}
-          mode="contained"
-          onPress={() => {
-            Linking.openURL("https://github.com/jessy-bgl/cryptholder/issues");
-          }}
-        >
-          <Text style={styles.buttonText}>{t("bugs")}</Text>
-        </Button>
-      </View>
-      <Divider />
-      <Text style={styles.title}>{t("donation").toUpperCase()}</Text>
-      <List.Section style={styles.root}>
-        <List.Item
-          title={t("bitcoin")}
-          left={() => (
-            <BitcoinLogo
-              width={25}
-              height={25}
-              fill={theme.colors.text}
-              style={styles.donateLogo}
-            />
-          )}
-          description={t("copyAddress")}
-          onPress={() => {
-            Clipboard.setString("");
-            onToggleSnackBar();
-          }}
-        />
-        <List.Item
-          title={t("ethereum")}
-          left={() => (
-            <EthereumLogo
-              width={25}
-              height={25}
-              fill={theme.colors.text}
-              style={styles.donateLogo}
-            />
-          )}
-          description={t("copyAddress")}
-          onPress={() => {
-            Clipboard.setString("");
-            onToggleSnackBar();
-          }}
-        />
-      </List.Section>
-      <Divider />
-      <Text style={styles.title}>{t("media").toUpperCase()}</Text>
-      <List.Section style={styles.root}>
-        <List.Item
-          title={t("mail")}
-          left={() => (
-            <ItemIonicon
-              name={"mail-outline"}
-              color={theme.colors.onSurface}
-              size={25}
-            />
-          )}
-          description={"dev@cryptholder.app"}
-          onPress={() => {
-            Clipboard.setString("dev@cryptholder.app");
-            onToggleSnackBar();
-          }}
-        />
-      </List.Section>
+            <Text style={styles.buttonText}>{t("sources")}</Text>
+          </Button>
+          <Portal>
+            <Modal
+              visible={modalVisible}
+              onDismiss={hideModal}
+              contentContainerStyle={styles.modal}
+            >
+              <ScrollView>
+                <Markdown styles={markdownStyles}>{changelog}</Markdown>
+              </ScrollView>
+            </Modal>
+          </Portal>
+          <Button style={styles.button} mode="contained" onPress={showModal}>
+            <Text style={styles.buttonText}>{t("changelog")}</Text>
+          </Button>
+          <Button
+            style={styles.button}
+            mode="contained"
+            onPress={() => {
+              Linking.openURL(
+                "https://github.com/jessy-bgl/cryptholder/issues"
+              );
+            }}
+          >
+            <Text style={styles.buttonText}>{t("bugs")}</Text>
+          </Button>
+        </View>
+        <Divider />
+        <Text style={styles.title}>{t("donation").toUpperCase()}</Text>
+        <List.Section style={styles.root}>
+          <List.Item
+            title={t("bitcoin")}
+            left={() => (
+              <BitcoinLogo
+                width={25}
+                height={25}
+                fill={theme.colors.text}
+                style={styles.donateLogo}
+              />
+            )}
+            description={t("copyAddress")}
+            onPress={() => {
+              Clipboard.setString("");
+              onToggleSnackBar();
+            }}
+          />
+          <List.Item
+            title={t("ethereum")}
+            left={() => (
+              <EthereumLogo
+                width={25}
+                height={25}
+                fill={theme.colors.text}
+                style={styles.donateLogo}
+              />
+            )}
+            description={t("copyAddress")}
+            onPress={() => {
+              Clipboard.setString("");
+              onToggleSnackBar();
+            }}
+          />
+        </List.Section>
+        <Divider />
+        <Text style={styles.title}>{t("media").toUpperCase()}</Text>
+        <List.Section style={styles.root}>
+          <List.Item
+            title={t("mail")}
+            left={() => (
+              <ItemIonicon
+                name={"mail-outline"}
+                color={theme.colors.onSurface}
+                size={25}
+              />
+            )}
+            description={"dev@cryptholder.app"}
+            onPress={() => {
+              Clipboard.setString("dev@cryptholder.app");
+              onToggleSnackBar();
+            }}
+          />
+        </List.Section>
+      </ScrollView>
       <Snackbar
         style={styles.snackbar}
         duration={1500}
@@ -212,9 +216,9 @@ const SettingsAbout = () => {
         onDismiss={onDismissSnackBar}
         action={{ label: "Close", onPress: () => onDismissSnackBar() }}
       >
-        Copied to clipboard.
+        <Text style={styles.snackbarText}>Copied to clipboard.</Text>
       </Snackbar>
-    </ScrollView>
+    </>
   );
 };
 
@@ -285,6 +289,11 @@ const createStyles = (theme: ReactNativePaper.Theme) => {
     snackbar: {
       width: "50%",
       alignSelf: "center",
+      backgroundColor: theme.colors.secondary,
+      opacity: 0.85,
+    },
+    snackbarText: {
+      color: theme.colors.text,
     },
     donateLogo: {
       marginTop: 14,
