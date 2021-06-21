@@ -16,8 +16,12 @@ import MainNavigator from "./MainNavigator";
 
 declare global {
   namespace ReactNativePaper {
-    interface ThemeColors {
+    export interface ThemeColors {
       secondary: string;
+      primaryText: string;
+      secondaryText: string;
+      red: string;
+      green: string;
     }
   }
 }
@@ -28,8 +32,15 @@ const CombinedLightTheme = {
   colors: {
     ...NavigationDefaultTheme.colors,
     ...PaperDefaultTheme.colors,
-    primary: "#344966",
-    secondary: "#777777",
+    primary: "#35456e",
+    secondary: "#ffffff",
+    text: "#212121",
+    primaryText: "#35456e",
+    secondaryText: "#6a6161",
+    accent: "#01C9BC",
+    background: "#ffffff",
+    red: "#ff4040",
+    green: "#2fc000",
   },
 };
 
@@ -39,7 +50,15 @@ const CombinedDarkTheme = {
   colors: {
     ...NavigationDarkTheme.colors,
     ...PaperDarkTheme.colors,
-    secondary: "#777777",
+    primary: "#35456e",
+    secondary: "#35456e",
+    text: "#eeeeee",
+    primaryText: "#7b7c96",
+    secondaryText: "#777777",
+    accent: "#01C9BC",
+    background: "#1e1e1e",
+    red: "#ff4040",
+    green: "#2fc000",
   },
 };
 

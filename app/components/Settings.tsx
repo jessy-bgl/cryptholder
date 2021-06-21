@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { StyleSheet } from "react-native";
 import { List, Switch, Text, useTheme } from "react-native-paper";
 import { useTranslation } from "react-i18next";
@@ -13,20 +13,17 @@ const Settings = () => {
   const { t } = useTranslation("settings");
   const { settings } = useStore();
   const { language, mainCurrency, mainScreen } = settings;
-  const { colors } = useTheme();
-  const { secondary } = colors;
+  const theme = useTheme();
+  const styles = useMemo(() => createStyles(theme), [theme]);
   const { navigate } = useNavigation();
 
   return (
     <List.Section style={styles.root}>
+      <Text style={styles.title}>{t("appearance").toUpperCase()}</Text>
       <ListItemDivider
         title={t("language")}
         left={() => <ItemIonicon name={"globe-outline"} />}
-        right={() => (
-          <Text style={{ color: secondary, ...styles.text }}>
-            {language.toUpperCase()}
-          </Text>
-        )}
+        right={() => <Text style={styles.text}>{language.toUpperCase()}</Text>}
         onPress={() => navigate("language")}
       />
       <ListItemDivider
@@ -43,9 +40,7 @@ const Settings = () => {
         title={t("mainCurrency")}
         left={() => <ItemIonicon name={"cash-outline"} />}
         right={() => (
-          <Text style={{ color: secondary, ...styles.text }}>
-            {mainCurrency.toUpperCase()}
-          </Text>
+          <Text style={styles.text}>{mainCurrency.toUpperCase()}</Text>
         )}
         onPress={() => navigate("mainCurrency")}
       />
@@ -58,21 +53,22 @@ const Settings = () => {
         title={t("homeScreen")}
         left={() => <ItemIonicon name={"albums-outline"} />}
         right={() => (
-          <Text style={{ color: secondary, ...styles.text }}>
-            {capitalizeFirstLetter(mainScreen)}
-          </Text>
+          <Text style={styles.text}>{capitalizeFirstLetter(mainScreen)}</Text>
         )}
         onPress={() => navigate("homeScreen")}
       />
+      <Text style={styles.title}>{t("security").toUpperCase()}</Text>
       <ListItemDivider
         title={t("security")}
         left={() => <ItemIonicon name={"lock-closed-outline"} />}
         right={() => <ItemIonicon name={"chevron-forward-outline"} />}
       />
+      <Text style={styles.title}>{t("other").toUpperCase()}</Text>
       <ListItemDivider
         title={t("about")}
         left={() => <ItemIonicon name={"rocket-outline"} />}
         right={() => <ItemIonicon name={"chevron-forward-outline"} />}
+        onPress={() => navigate("about")}
       />
     </List.Section>
   );
@@ -80,16 +76,27 @@ const Settings = () => {
 
 export default observer(Settings);
 
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    width: "100%",
-  },
-  icon: {
-    textAlignVertical: "center",
-  },
-  text: {
-    textAlignVertical: "center",
-    fontSize: 18,
-  },
-});
+const createStyles = (theme: ReactNativePaper.Theme) => {
+  return StyleSheet.create({
+    root: {
+      flex: 1,
+      width: "100%",
+    },
+    icon: {
+      textAlignVertical: "center",
+    },
+    text: {
+      textAlignVertical: "center",
+      fontSize: 18,
+      color: theme.colors.secondaryText,
+    },
+    title: {
+      fontSize: 13,
+      paddingLeft: 10,
+      paddingTop: 25,
+      fontWeight: "bold",
+      color: theme.colors.primaryText,
+      backgroundColor: theme.colors.background,
+    },
+  });
+};
