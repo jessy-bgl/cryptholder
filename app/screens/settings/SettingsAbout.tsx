@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Text,
@@ -9,8 +9,18 @@ import {
   Linking,
   ScrollView,
 } from "react-native";
-import { Button, Divider, List, useTheme, Snackbar } from "react-native-paper";
+import {
+  Button,
+  Divider,
+  List,
+  useTheme,
+  Snackbar,
+  Modal,
+  Portal,
+} from "react-native-paper";
 import Clipboard from "expo-clipboard";
+import Markdown from "react-native-simple-markdown";
+import { Asset } from "expo-asset";
 
 import ItemIonicon from "../../components/Icon/ItemIonicon";
 import app from "../../../app.json";
@@ -22,9 +32,27 @@ const SettingsAbout = () => {
   const { t } = useTranslation("settings");
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
+  const markdownStyles = useMemo(() => createMarkdownStyles(theme), [theme]);
   const [snackbarVisible, setSnackbarVisible] = React.useState(false);
+  const [modalVisible, setModalVisible] = React.useState(false);
+  const [changelog, setChangelog] = React.useState(undefined);
   const onToggleSnackBar = () => setSnackbarVisible(!snackbarVisible);
   const onDismissSnackBar = () => setSnackbarVisible(false);
+  const showModal = () => setModalVisible(true);
+  const hideModal = () => setModalVisible(false);
+
+  const fetchLocalFile = async () => {
+    let file: any = Asset.fromModule(require("../../../CHANGELOG.md"));
+    await file.downloadAsync();
+    file = await fetch(file.uri);
+    file = await file.text();
+
+    setChangelog(file);
+  };
+
+  useEffect(() => {
+    fetchLocalFile();
+  }, []);
 
   return (
     <ScrollView>
@@ -98,7 +126,18 @@ const SettingsAbout = () => {
         >
           <Text style={styles.buttonText}>{t("sources")}</Text>
         </Button>
-        <Button style={styles.button} mode="contained" onPress={() => {}}>
+        <Portal>
+          <Modal
+            visible={modalVisible}
+            onDismiss={hideModal}
+            contentContainerStyle={styles.modal}
+          >
+            <ScrollView>
+              <Markdown styles={markdownStyles}>{changelog}</Markdown>
+            </ScrollView>
+          </Modal>
+        </Portal>
+        <Button style={styles.button} mode="contained" onPress={showModal}>
           <Text style={styles.buttonText}>{t("changelog")}</Text>
         </Button>
         <Button
@@ -179,6 +218,32 @@ const SettingsAbout = () => {
   );
 };
 
+const createMarkdownStyles = (theme: ReactNativePaper.Theme) => {
+  return {
+    heading1: {
+      fontSize: 24,
+      color: theme.colors.primaryText,
+    },
+    heading2: {
+      marginTop: 15,
+      fontSize: 20,
+      color: theme.colors.primaryText,
+    },
+    link: {
+      color: theme.colors.accent,
+    },
+    mailTo: {
+      color: theme.colors.accent,
+    },
+    text: {
+      color: theme.colors.text,
+    },
+    listItemBullet: {
+      color: theme.colors.text,
+    },
+  };
+};
+
 const createStyles = (theme: ReactNativePaper.Theme) => {
   return StyleSheet.create({
     root: {
@@ -223,6 +288,17 @@ const createStyles = (theme: ReactNativePaper.Theme) => {
     },
     donateLogo: {
       marginTop: 14,
+    },
+    modal: {
+      backgroundColor: theme.colors.background,
+      margin: 20,
+      padding: 10,
+      borderColor: theme.colors.primary,
+      borderWidth: 2,
+      height: "60%",
+    },
+    markdown: {
+      color: theme.colors.text,
     },
   });
 };
