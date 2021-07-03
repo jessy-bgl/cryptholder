@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { RefreshControl, StyleSheet, ScrollView } from "react-native";
+import { RefreshControl, ScrollView } from "react-native";
 import { useTranslation } from "react-i18next";
 import { observer } from "mobx-react-lite";
 import { DataTable } from "react-native-paper";
 
 import { ICoinMarket } from "../models/market/coin-market-model";
 import { useStore } from "../models/root-store/root-store-context";
+
 import MarketCoinRow from "../components/DataTable/MarketCoinRow";
 
 const Main = () => {
