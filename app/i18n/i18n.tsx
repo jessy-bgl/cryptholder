@@ -7,6 +7,8 @@ import settingsEn from "./settings/en.json";
 import settingsFr from "./settings/fr.json";
 import marketEn from "./market/en.json";
 import marketFr from "./market/fr.json";
+import favoritesEn from "./favorites/en.json";
+import favoritesFr from "./favorites/fr.json";
 import { config } from "../config/config";
 
 i18next.use(initReactI18next).init({
@@ -20,11 +22,13 @@ i18next.use(initReactI18next).init({
       common: commonEn,
       settings: settingsEn,
       market: marketEn,
+      favorites: favoritesEn,
     },
     fr: {
       common: commonFr,
       settings: settingsFr,
       market: marketFr,
+      favorites: favoritesFr,
     },
   },
 });

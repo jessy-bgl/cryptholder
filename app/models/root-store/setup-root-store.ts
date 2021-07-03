@@ -25,6 +25,7 @@ export const setupRootStore = async () => {
     // an empty state instead of crashing.
     rootStore = RootStoreModel.create({
       market: { coins: [] },
+      favorites: { coins: [] },
       settings: { darkMode: false },
     });
 
