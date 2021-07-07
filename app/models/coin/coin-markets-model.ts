@@ -1,6 +1,6 @@
 import { Instance, types, SnapshotOut } from "mobx-state-tree";
 
-export const CoinMarketModel = types.model({
+export const CoinMarketsModel = types.model({
   id: types.string,
   symbol: types.string,
   name: types.maybeNull(types.string),
@@ -25,6 +25,6 @@ export const CoinMarketModel = types.model({
 // according to the official mobx-state-tree doc, using the following
 // interface is much more optimized for the typescript compiler
 // https://mobx-state-tree.js.org/tips/typescript#using-a-mst-type-at-design-time
-export interface ICoinMarket extends Instance<typeof CoinMarketModel> {}
-export interface ICoinMarketSnapshot
-  extends SnapshotOut<typeof CoinMarketModel> {}
+export interface ICoinMarkets extends Instance<typeof CoinMarketsModel> {}
+export interface ICoinMarketsSnapshot
+  extends SnapshotOut<typeof CoinMarketsModel> {}

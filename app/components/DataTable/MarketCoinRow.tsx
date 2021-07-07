@@ -11,7 +11,7 @@ import {
   Menu,
 } from "react-native-paper";
 
-import { ICoinMarket } from "../../models/market/coin-market-model";
+import { ICoinMarkets } from "../../models/coin/coin-markets-model";
 import {
   numberCurrency,
   numberCurrencyAverage,
@@ -33,9 +33,9 @@ const MarketCoinRow = ({
   market_cap_change_percentage_24h,
   current_price,
   price_change_percentage_24h,
-}: ICoinMarket) => {
+}: ICoinMarkets) => {
   const { colors } = useTheme();
-  const { favorites } = useStore();
+  const { coins } = useStore();
   const { t } = useTranslation("favorites");
 
   const [coinMenu, setCoinMenu] = useState<CoinMenu>({
@@ -54,12 +54,12 @@ const MarketCoinRow = ({
     // init coin menu options
     const menuOptions: [React.ReactNode?] = [];
     // set favorites option
-    if (favorites.coins.includes(id))
+    if (coins.favorites.includes(id))
       menuOptions.push(
         <Menu.Item
           key="remove"
           onPress={() => {
-            favorites.removeFavorite(id);
+            coins.removeFavorite(id);
             closeCoinMenu();
           }}
           title={t("removeFromFavorites")}
@@ -70,7 +70,7 @@ const MarketCoinRow = ({
         <Menu.Item
           key="add"
           onPress={() => {
-            favorites.addFavorite(id);
+            coins.addFavorite(id);
             closeCoinMenu();
           }}
           title={t("addToFavorites")}
