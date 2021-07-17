@@ -12,12 +12,16 @@ import { setupRootStore } from "./app/models/root-store/setup-root-store";
 import "./app/i18n/i18n";
 
 export default function App() {
-  const [rootStore, setRootStore] = useState<RootStoreInstance | undefined>(
-    undefined
-  );
+  const [rootStore, setRootStore] =
+    useState<RootStoreInstance | undefined>(undefined);
+
+  const initStore = async () => {
+    const store: RootStoreInstance = await setupRootStore();
+    setRootStore(store);
+  };
 
   useEffect(() => {
-    setupRootStore().then(setRootStore);
+    initStore();
   }, []);
 
   if (!rootStore) {
