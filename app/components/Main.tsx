@@ -4,14 +4,14 @@ import { useTranslation } from "react-i18next";
 import { observer } from "mobx-react-lite";
 import { DataTable } from "react-native-paper";
 
-import { ICoinMarket } from "../models/market/coin-market-model";
+import { ICoinMarkets } from "../models/coin/coin-markets-model";
 import { useStore } from "../models/root-store/root-store-context";
 
 import MarketCoinRow from "../components/DataTable/MarketCoinRow";
 
 const Main = () => {
-  const { market } = useStore();
-  const { coins } = market;
+  const { coins } = useStore();
+  const { market } = coins;
 
   const { t } = useTranslation("market");
 
@@ -20,7 +20,7 @@ const Main = () => {
   useEffect(() => {
     async function fetchCoinsMarketsData() {
       setLoadingMarketData(true);
-      await market.reloadCoinsMarketsData();
+      await coins.reloadCoinsMarketsData();
       setLoadingMarketData(false);
     }
     fetchCoinsMarketsData();
@@ -28,7 +28,7 @@ const Main = () => {
 
   const onRefresh = React.useCallback(() => {
     setLoadingMarketData(true);
-    market.reloadCoinsMarketsData().then(() => setLoadingMarketData(false));
+    coins.reloadCoinsMarketsData().then(() => setLoadingMarketData(false));
   }, []);
 
   return (
@@ -43,7 +43,7 @@ const Main = () => {
           <DataTable.Title numeric>{t("cap_24h")}</DataTable.Title>
           <DataTable.Title numeric>{t("price_24h")}</DataTable.Title>
         </DataTable.Header>
-        {coins.map((coin: ICoinMarket) => (
+        {market.map((coin: ICoinMarkets) => (
           <MarketCoinRow {...coin} key={coin.id} />
         ))}
       </DataTable>

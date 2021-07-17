@@ -1,14 +1,16 @@
 import * as Types from "./types";
-import { CoingeckoService } from "./api/coingecko.service";
+import { CoingeckoService, ICoinsMarketsParams } from "./api/coingecko.service";
 
 /**
  * Manages coin requests.
  */
 export class CoinService {
-  async getCoinsMarkets(): Promise<Types.MarketResult | undefined> {
+  async getCoinsMarkets(
+    params?: ICoinsMarketsParams
+  ): Promise<Types.MarketResult | undefined> {
     try {
       const coingeckoService = new CoingeckoService();
-      const coinsMarketData = await coingeckoService.getCoinsMarkets();
+      const coinsMarketData = await coingeckoService.getCoinsMarkets(params);
       return coinsMarketData;
     } catch (e) {
       __DEV__ && console.log(e.response.data.error);

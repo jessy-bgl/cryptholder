@@ -1,5 +1,5 @@
 import { ICoin } from "../models/coin/coin-model";
-import { ICoinMarket } from "../models/market/coin-market-model";
+import { ICoinMarkets } from "../models/coin/coin-markets-model";
 
-export type MarketResult = ICoinMarket[];
+export type MarketResult = ICoinMarkets[];
 export type CoinResult = ICoin;

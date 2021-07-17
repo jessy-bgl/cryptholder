@@ -1,4 +1,4 @@
-import { MarketModel } from "../market-model";
+import { MarketModel } from "../coins-model";
 
 describe("Market model", () => {
   test("can be created", () => {
