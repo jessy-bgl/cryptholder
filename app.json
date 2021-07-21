@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "cryptholder",
-    "slug": "cryptholder",
+    "name": "CryptHolder",
+    "slug": "CryptHolder",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/logo.png",
     "scheme": "cryptholder",
     "userInterfaceStyle": "automatic",
     "splash": {
@@ -21,13 +21,13 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/logo.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.cryptholder.app"
     },
     "web": {
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/logo.png"
     },
     "packagerOpts": {
       "config": "metro.config.js",

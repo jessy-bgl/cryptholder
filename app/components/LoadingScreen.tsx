@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { Image, StyleSheet, Text } from "react-native";
 import { useTheme } from "react-native-paper";
 
-import logo from "../../assets/images/logo.png";
+import logo from "../../assets/images/logo-rounded.png";
 import loading from "../../assets/images/loading.gif";
 
 export default function LoadingScreen() {
@@ -23,10 +23,9 @@ const createStyles = (theme: ReactNativePaper.Theme) => {
     logo: {
       width: 100,
       height: 100,
-      marginTop: 300,
+      marginTop: 280,
       marginBottom: 20,
       alignSelf: "center",
-      borderRadius: 10,
     },
     title: {
       fontSize: 25,
