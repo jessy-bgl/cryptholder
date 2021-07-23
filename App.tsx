@@ -3,9 +3,9 @@ import {
   initialWindowMetrics,
   SafeAreaProvider,
 } from "react-native-safe-area-context";
+import AppLoading from "expo-app-loading";
 
 import Navigation from "./app/navigation";
-import LoadingScreenComponent from "./app/components/LoadingScreen";
 import { RootStoreInstance } from "./app/models/root-store/root-store";
 import { RootStoreProvider } from "./app/models/root-store/root-store-context";
 import { setupRootStore } from "./app/models/root-store/setup-root-store";
@@ -21,7 +21,7 @@ export default function App() {
   }, []);
 
   if (!rootStore) {
-    return <LoadingScreenComponent />;
+    return <AppLoading />;
   }
 
   return (
