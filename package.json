@@ -48,7 +48,8 @@
     "react-native-screens": "~3.0.0",
     "react-native-simple-markdown": "^1.1.0",
     "react-native-svg-transformer": "^0.14.3",
-    "react-native-web": "~0.13.12"
+    "react-native-web": "~0.13.12",
+    "expo-local-authentication": "~11.0.2"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",

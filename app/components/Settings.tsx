@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { StyleSheet } from "react-native";
 import { List, Switch, Text, useTheme } from "react-native-paper";
 import { useTranslation } from "react-i18next";
@@ -8,6 +8,7 @@ import { useStore } from "../models/root-store/root-store-context";
 import ItemIonicon from "../components/Icon/ItemIonicon";
 import { useNavigation } from "@react-navigation/core";
 import { capitalizeFirstLetter } from "../utils/strings";
+import { getValueFor } from "../../expo-secure-store/securestore";
 
 const Settings = () => {
   const { t } = useTranslation("settings");
@@ -16,6 +17,18 @@ const Settings = () => {
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
   const { navigate } = useNavigation();
+  const [savedCode, setSavedCode] = useState<string | undefined>(undefined);
+
+  // TODO : don't need to get code to verify it's ok
+  // maybe init other settings parameter when code is successfully created
+  const initSavedCode = async () => {
+    const code = await getValueFor("passcode");
+    setSavedCode(code);
+  };
+
+  useEffect(() => {
+    initSavedCode();
+  }, []);
 
   return (
     <List.Section style={styles.root}>
@@ -62,6 +75,13 @@ const Settings = () => {
         title={t("security")}
         left={() => <ItemIonicon name={"lock-closed-outline"} />}
         right={() => <ItemIonicon name={"chevron-forward-outline"} />}
+        onPress={() => {
+          if (settings.passcode && savedCode) {
+            navigate("auth", { screen: "security", resetStack: false });
+          } else {
+            navigate("security");
+          }
+        }}
       />
       <Text style={styles.title}>{t("other").toUpperCase()}</Text>
       <ListItemDivider

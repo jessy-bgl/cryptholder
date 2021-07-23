@@ -22,5 +22,10 @@
   "mail": "Email address",
   "bitcoin": "Donate with Bitcoin",
   "ethereum": "Donate with Ethereum",
-  "copyAddress": "Click here to copy address"
+  "copyAddress": "Click here to copy address",
+  "code": "Enable Passcode",
+  "codeDescription": "Require a code authentification",
+  "biometricAuth": "Enable Biometric authentication",
+  "biometricAuthDescription": "Require a biometric authentication",
+  "passcode": "Passcode"
 }
