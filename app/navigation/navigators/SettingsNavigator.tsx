@@ -1,5 +1,8 @@
 import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
+import {
+  CardStyleInterpolators,
+  createStackNavigator,
+} from "@react-navigation/stack";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "react-native-paper";
 
@@ -7,6 +10,7 @@ import Settings from "../../screens/settings/Settings";
 import SettingsLanguage from "../../screens/settings/SettingsLanguage";
 import SettingsMainCurrency from "../../screens/settings/SettingsMainCurrency";
 import SettingsMainScreen from "../../screens/settings/SettingsMainScreen";
+import SettingsSecurity from "../../screens/settings/SettingsSecurity";
 import SettingsAbout from "../../screens/settings/SettingsAbout";
 
 export type SettingsStackParamList = {
@@ -14,7 +18,9 @@ export type SettingsStackParamList = {
   language: undefined;
   mainCurrency: undefined;
   homeScreen: undefined;
+  security: undefined;
   about: undefined;
+  passcode: { title: string };
 };
 
 const Stack = createStackNavigator<SettingsStackParamList>();
@@ -27,6 +33,7 @@ const SettingsNavigator = () => {
       backgroundColor: colors.secondary,
     },
     headerTintColor: colors.text,
+    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
   };
 
   return (
@@ -60,6 +67,14 @@ const SettingsNavigator = () => {
         component={SettingsMainScreen}
         options={{
           title: t("homeScreen"),
+          ...headerStyle,
+        }}
+      />
+      <Stack.Screen
+        name="security"
+        component={SettingsSecurity}
+        options={{
+          title: t("security"),
           ...headerStyle,
         }}
       />

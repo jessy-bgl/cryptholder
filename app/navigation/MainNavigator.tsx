@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { AppState, AppStateStatus } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import { StackActions } from "@react-navigation/native";
+import { StackActions, useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useTheme } from "react-native-paper";
@@ -12,6 +13,7 @@ import FavoritesView from "../screens/Favorites";
 import PortfolioView from "../screens/Portfolio";
 import SettingsNavigator from "./navigators/SettingsNavigator";
 import { useStore } from "../models/root-store/root-store-context";
+import { getValueFor } from "../../expo-secure-store/securestore";
 
 export type MainStackParamList = {
   home: undefined;
@@ -23,7 +25,7 @@ export type MainStackParamList = {
 
 type MainStackScreenProps = StackScreenProps<MainStackParamList>;
 
-const Tab = createMaterialBottomTabNavigator<MainStackParamList>();
+const MainStack = createMaterialBottomTabNavigator<MainStackParamList>();
 
 const TabBarIcon = (props: {
   name: React.ComponentProps<typeof Ionicons>["name"];
@@ -63,16 +65,41 @@ const MainNavigator = () => {
   const { colors } = useTheme();
   const { settings } = useStore();
   const { primary } = colors;
+  const appState = useRef(AppState.currentState);
+  const { navigate } = useNavigation();
+
+  // if application come from background, navigate to auth screen if needed
+  const handleAppStateChange = async (nextAppState: AppStateStatus) => {
+    const storageCode = await getValueFor("passcode");
+
+    if (
+      appState.current.match(/inactive|background/) &&
+      nextAppState === "active" &&
+      settings.passcode &&
+      storageCode != undefined
+    ) {
+      navigate("auth", { screen: undefined, resetStack: false });
+    }
+
+    appState.current = nextAppState;
+  };
+
+  useEffect(() => {
+    AppState.addEventListener("change", handleAppStateChange);
+
+    return () => {
+      AppState.removeEventListener("change", handleAppStateChange);
+    };
+  }, []);
 
   return (
-    <Tab.Navigator
-      initialRouteName="home"
+    <MainStack.Navigator
       shifting={true}
       sceneAnimationEnabled={false}
       barStyle={{ backgroundColor: primary }}
       activeColor={settings.darkMode ? colors.text : colors.background}
     >
-      <Tab.Screen
+      <MainStack.Screen
         name="home"
         component={MainView}
         options={{
@@ -84,7 +111,7 @@ const MainNavigator = () => {
         }}
         listeners={resetStackOnTabPress}
       />
-      <Tab.Screen
+      <MainStack.Screen
         name="favorites"
         component={FavoritesView}
         options={{
@@ -94,7 +121,7 @@ const MainNavigator = () => {
         }}
         listeners={resetStackOnTabPress}
       />
-      <Tab.Screen
+      <MainStack.Screen
         name="portfolio"
         component={AlertsView}
         options={{
@@ -106,7 +133,7 @@ const MainNavigator = () => {
         }}
         listeners={resetStackOnTabPress}
       />
-      <Tab.Screen
+      <MainStack.Screen
         name="alerts"
         component={PortfolioView}
         options={{
@@ -118,7 +145,7 @@ const MainNavigator = () => {
         }}
         listeners={resetStackOnTabPress}
       />
-      <Tab.Screen
+      <MainStack.Screen
         name="settings"
         component={SettingsNavigator}
         options={{
@@ -129,7 +156,7 @@ const MainNavigator = () => {
         }}
         listeners={resetStackOnTabPress}
       />
-    </Tab.Navigator>
+    </MainStack.Navigator>
   );
 };
 
