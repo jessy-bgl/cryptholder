@@ -37,9 +37,9 @@ const createStyles = (theme: ReactNativePaper.Theme) => {
       marginBottom: 80,
     },
     common: {
-      borderWidth: 2,
-      width: 25,
-      height: 25,
+      borderWidth: 1,
+      width: 20,
+      height: 20,
       borderRadius: 15,
       margin: 5,
     },
