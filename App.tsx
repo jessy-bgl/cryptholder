@@ -4,11 +4,12 @@ import {
   SafeAreaProvider,
 } from "react-native-safe-area-context";
 
-import Navigation from "./app/navigation";
+import ThemeProvider from "./app/providers/ThemeProvider";
 import LoadingScreenComponent from "./app/components/LoadingScreen";
 import { RootStoreInstance } from "./app/models/root-store/root-store";
 import { RootStoreProvider } from "./app/models/root-store/root-store-context";
 import { setupRootStore } from "./app/models/root-store/setup-root-store";
+import MainNavigator from "./app/navigation/MainNavigator";
 import "./app/i18n/i18n";
 
 export default function App() {
@@ -31,7 +32,9 @@ export default function App() {
   return (
     <RootStoreProvider value={rootStore}>
       <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-        <Navigation />
+        <ThemeProvider>
+          <MainNavigator />
+        </ThemeProvider>
       </SafeAreaProvider>
     </RootStoreProvider>
   );

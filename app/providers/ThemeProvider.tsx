@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import {
   DefaultTheme as PaperDefaultTheme,
   DarkTheme as PaperDarkTheme,
@@ -11,8 +11,6 @@ import {
   DarkTheme as NavigationDarkTheme,
   NavigationContainer,
 } from "@react-navigation/native";
-
-import MainNavigator from "./MainNavigator";
 
 declare global {
   namespace ReactNativePaper {
@@ -62,7 +60,11 @@ const CombinedDarkTheme = {
   },
 };
 
-export const Navigation = () => {
+interface ThemeProviderProps {
+  children: ReactNode;
+}
+
+export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const { settings } = useStore();
 
   return (
@@ -72,10 +74,10 @@ export const Navigation = () => {
       <NavigationContainer
         theme={settings.darkMode ? CombinedDarkTheme : CombinedLightTheme}
       >
-        <MainNavigator />
+        {children}
       </NavigationContainer>
     </PaperProvider>
   );
 };
 
-export default observer(Navigation);
+export default observer(ThemeProvider);
