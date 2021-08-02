@@ -22,5 +22,10 @@
   "mail": "Addresse Email",
   "bitcoin": "Donner avec Bitcoin",
   "ethereum": "Donner avec Ethereum",
-  "copyAddress": "Cliquez ici pour copier l'adresse"
+  "copyAddress": "Cliquez ici pour copier l'adresse",
+  "code": "Authentification par mot de passe",
+  "codeDescription": "Requiert un mot de passe",
+  "biometricAuth": "Authentification par empreinte digitale",
+  "biometricAuthDescription": "Requiert une authentification par empreinte digitale",
+  "passcode": "Mot de passe"
 }

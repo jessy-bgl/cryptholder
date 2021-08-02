@@ -8,6 +8,8 @@ export const SettingsModel = types
     language: types.optional(types.string, config.language.default),
     mainCurrency: types.optional(types.string, config.mainCurrency.default),
     mainScreen: types.optional(types.string, config.mainScreen.default),
+    isBioAuthRequired: types.optional(types.boolean, false),
+    isAuthRequired: types.optional(types.boolean, false),
   })
   .actions((self) => ({
     toggleDarkMode: (value: boolean) => {
@@ -28,6 +30,16 @@ export const SettingsModel = types
   .actions((self) => ({
     setDefaultMainScreen: (value: string) => {
       self.mainScreen = value;
+    },
+  }))
+  .actions((self) => ({
+    toggleIsBioAuthRequired: () => {
+      self.isBioAuthRequired = !self.isBioAuthRequired;
+    },
+  }))
+  .actions((self) => ({
+    setIsAuthRequired: (value: boolean) => {
+      self.isAuthRequired = value;
     },
   }));
 

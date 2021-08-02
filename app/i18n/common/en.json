@@ -1,8 +1,10 @@
 {
-    "loading": "Loading",
-    "alerts": "Alerts",
-    "home": "Home",
-    "portfolio": "Portfolio",
-    "settings": "Settings",
-    "favorites": "Favorites"
+  "loading": "Loading",
+  "alerts": "Alerts",
+  "home": "Home",
+  "portfolio": "Portfolio",
+  "settings": "Settings",
+  "favorites": "Favorites",
+  "createCode": "Create a new passcode",
+  "verifyCode": "Verify your passcode"
 }

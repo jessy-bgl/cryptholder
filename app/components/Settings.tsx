@@ -62,6 +62,13 @@ const Settings = () => {
         title={t("security")}
         left={() => <ItemIonicon name={"lock-closed-outline"} />}
         right={() => <ItemIonicon name={"chevron-forward-outline"} />}
+        onPress={() => {
+          if (settings.isAuthRequired) {
+            navigate("auth", { screen: "security", resetStack: false });
+          } else {
+            navigate("security");
+          }
+        }}
       />
       <Text style={styles.title}>{t("other").toUpperCase()}</Text>
       <ListItemDivider

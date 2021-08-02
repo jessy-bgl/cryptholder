@@ -1,8 +1,10 @@
 {
-    "loading": "Chargement",
-    "alerts": "Alertes",
-    "home": "Accueil",
-    "portfolio": "Portfolio",
-    "settings": "Paramètres",
-    "favorites": "Favoris"
+  "loading": "Chargement",
+  "alerts": "Alertes",
+  "home": "Accueil",
+  "portfolio": "Portfolio",
+  "settings": "Paramètres",
+  "favorites": "Favoris",
+  "createCode": "Créer un nouveau mot de passe",
+  "verifyCode": "Vérifier le mot de passe"
 }
