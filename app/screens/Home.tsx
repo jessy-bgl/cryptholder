@@ -1,12 +1,12 @@
 import React from "react";
 import { StyleSheet, View, StatusBar } from "react-native";
 
-import MainComponent from "../components/Main";
+import HomeComponent from "../components/Home";
 
 export const MainScreen = function Main() {
   return (
     <View style={styles.root}>
-      <MainComponent />
+      <HomeComponent />
     </View>
   );
 };

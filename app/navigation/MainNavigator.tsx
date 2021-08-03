@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useTheme } from "react-native-paper";
 
-import MainView from "../screens/Main";
+import MainView from "../screens/Home";
 import AlertsView from "../screens/Alerts";
 import FavoritesView from "../screens/Favorites";
 import PortfolioView from "../screens/Portfolio";

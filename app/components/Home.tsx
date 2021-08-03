@@ -6,7 +6,7 @@ import { DataTable } from "react-native-paper";
 
 import { ICoinMarket } from "../models/market/coin-market-model";
 import { useStore } from "../models/root-store/root-store-context";
-import MarketCoinRow from "../components/DataTable/MarketCoinRow";
+import MarketCoinRow from "./DataTable/MarketCoinRow";
 
 const Main = () => {
   const { market } = useStore();
