@@ -7,10 +7,10 @@ import { useTranslation } from "react-i18next";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useTheme } from "react-native-paper";
 
-import MainView from "../screens/Home";
 import AlertsView from "../screens/Alerts";
 import FavoritesView from "../screens/Favorites";
 import PortfolioView from "../screens/Portfolio";
+import HomeNavigator from "./navigators/HomeNavigator";
 import SettingsNavigator from "./navigators/SettingsNavigator";
 import { useStore } from "../models/root-store/root-store-context";
 import { getValueFor } from "../../expo-secure-store/securestore";
@@ -100,7 +100,7 @@ const MainNavigator = () => {
     >
       <MainStack.Screen
         name="home"
-        component={MainView}
+        component={HomeNavigator}
         options={{
           title: t("home"),
           tabBarIcon: ({ color }) => (

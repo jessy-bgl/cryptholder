@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { StyleSheet } from "react-native";
 import { View, Image } from "react-native";
@@ -20,6 +21,7 @@ const MarketCoinRow = ({
   price_change_percentage_24h,
 }: ICoinMarket) => {
   const { colors } = useTheme();
+  const { navigate } = useNavigation();
 
   const renderProfitLossColor = (nb: number | null): string => {
     if (nb === null) return "";
@@ -27,7 +29,11 @@ const MarketCoinRow = ({
   };
 
   return (
-    <DataTable.Row>
+    <DataTable.Row
+      onPress={() => {
+        navigate("coin", { symbol: symbol });
+      }}
+    >
       <DataTable.Cell>
         <View style={styles.rankView}>
           <Text>{market_cap_rank}</Text>
