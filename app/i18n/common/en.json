@@ -6,5 +6,6 @@
   "settings": "Settings",
   "favorites": "Favorites",
   "createCode": "Create a new passcode",
-  "verifyCode": "Verify your passcode"
+  "verifyCode": "Verify your passcode",
+  "coin": "Coin"
 }

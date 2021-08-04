@@ -11,7 +11,7 @@ const API_MARKET: { path: string; params: object } = {
   path: "coins/markets",
   params: {
     vs_currency: "usd",
-    per_page: 50,
+    per_page: 200,
     price_change_percentage: "1h,24h,7d",
   },
 };

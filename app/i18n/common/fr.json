@@ -6,5 +6,6 @@
   "settings": "Paramètres",
   "favorites": "Favoris",
   "createCode": "Créer un nouveau mot de passe",
-  "verifyCode": "Vérifier le mot de passe"
+  "verifyCode": "Vérifier le mot de passe",
+  "coin": "Coin"
 }
